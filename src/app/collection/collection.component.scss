@@ -1,0 +1,9 @@
+.collection-product-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 40px;
+    @media only screen and (max-width: 960px) {
+        grid-template-columns: 1fr 1fr;
+    }
+}

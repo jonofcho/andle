@@ -1,0 +1,21 @@
+.header-routing-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    @media only screen and (max-width: 960px) {
+        display: none;
+    }
+}
+.header-routing-mobile-container{
+    margin-bottom: 16px;
+    @media only screen and (min-width: 961px) {
+        display: none;
+    }
+}
+.header-routing-item{
+    color: black;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}

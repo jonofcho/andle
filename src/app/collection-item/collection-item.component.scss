@@ -1,0 +1,32 @@
+img{
+    max-width: 100%;
+}
+.collection-product-grid-item{
+    display: grid;
+    grid-template-rows: auto 50px 50px 50px;
+    grid-gap: 1px;
+    border: 1px solid black;
+    background-color: black;
+}
+.collection-product-grid-item{
+    div{
+        background-color: #F3EEDC;
+    }
+}
+
+.product-info{
+    display: flex;
+    align-items:center;
+    padding: 0 8px;
+}
+.product-name{
+    
+}
+.product-variants{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-atc{
+
+}

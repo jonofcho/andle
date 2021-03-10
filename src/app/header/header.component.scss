@@ -1,0 +1,21 @@
+img{
+    max-width: 200px;
+    margin: 0 auto;
+}
+.header-container{
+    display:grid; 
+    grid-template-columns: 100px 1fr 100px;
+    justify-content:space-between; 
+    align-items:center;
+    a{
+        color:black;
+    }
+    a + a {
+        margin-left: 24px;
+    }
+    
+}
+.header-user-actions{
+    width: 100px;
+    text-align: right;
+}
