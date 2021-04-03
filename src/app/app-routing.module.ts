@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CollectionGridComponent } from './collection/collection-grid.component';
-import { CollectionContainerComponent } from './collection-container/collection-container.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { CollectionContainerComponent } from './containers/collection-container/collection-container.component';
+import { AboutUsComponent } from './containers/about-us/about-us.component';
+import { ProductContainerComponent } from './containers/product-container/product-container.component';
+import { CollectionGridComponent } from './containers/collection-container/components/collection-grid/collection-grid.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'shop',
     component: CollectionContainerComponent,
+  },
+  {
+    path: 'product/:id',
+    component: ProductContainerComponent
   },
   // {
   //   path: 'read',
