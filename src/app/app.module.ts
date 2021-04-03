@@ -3,22 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CollectionComponent } from './collection/collection.component';
-import { ProductComponent } from './product/product.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { CollectionItemComponent } from './collection-item/collection-item.component';
-import { HeaderRoutingComponent } from './header-routing/header-routing.component';
+import { FooterComponent } from './containers/footer/footer.component';
+import { HeaderComponent } from './containers/header/header.component';
+import { CollectionItemComponent } from './containers/collection-container/components/collection-item/collection-item.component';
+import { HeaderRoutingComponent } from './containers/header-routing/header-routing.component';
+import { CollectionContainerComponent } from './containers/collection-container/collection-container.component';
+import { AboutUsComponent } from './containers/about-us/about-us.component';
+import { CollectionGridComponent } from './containers/collection-container/components/collection-grid/collection-grid.component';
+import { ProductContainerComponent } from './containers/product-container/product-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CollectionComponent,
-    ProductComponent,
+    CollectionGridComponent,
+    ProductContainerComponent,
     FooterComponent,
     HeaderComponent,
     CollectionItemComponent,
-    HeaderRoutingComponent
+    HeaderRoutingComponent,
+    CollectionContainerComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
