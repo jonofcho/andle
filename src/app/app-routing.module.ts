@@ -9,7 +9,7 @@ import { CollectionGridComponent } from './containers/collection-container/compo
 const routes: Routes = [
   {
     path: '',
-    component: CollectionGridComponent
+    component: CollectionContainerComponent
   },
   {
     path: 'shop',
