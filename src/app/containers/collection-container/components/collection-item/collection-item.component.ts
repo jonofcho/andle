@@ -8,11 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CollectionItemComponent implements OnInit {
   public collItemTitle:string;
   public collItemImgSrc: string;
-  public collItemId:string;
+  public collItemHandle:string;
   @Input() set productData(values) {
     this.collItemTitle = values.node.title;
     this.collItemImgSrc = values.node.images.edges[0].node.src
-    this.collItemId = values.node.id;
+    this.collItemHandle = values.node.handle;
   }
   
   constructor() { }

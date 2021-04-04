@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ShopifyService } from 'src/app/services/shopify.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from '@apollo/client/core';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -6,10 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-container.component.scss']
 })
 export class ProductContainerComponent implements OnInit {
-
-  constructor() { }
+  public productObs;
+  public $productData;
+  public $productImages;
+  public $productDetails;
+  constructor(private route: ActivatedRoute, private shopifyService: ShopifyService) { 
+  }
 
   ngOnInit() {
+    this.route.params.subscribe(data => {
+      let currentProductHandle = data.id;
+      this.$productData = this.shopifyService.getProductByHandle(currentProductHandle)
+      this.$productImages = this.$productData.pipe(
+        tap(obs => {
+          console.log(obs);
+          
+        }),
+        map(obs => {
+          return obs['productByHandle']['images']['edges']
+        })
+      )
+    })
   }
 
 }

@@ -1,4 +1,4 @@
-<div>
-    <app-product-image></app-product-image>
-    <app-product-details></app-product-details>
+<div class="product-details-container">
+    <app-product-image [images]="$productImages | async"></app-product-image>
+    <app-product-details [details]="$productData | async"></app-product-details>
 </div>

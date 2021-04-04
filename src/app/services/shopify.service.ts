@@ -7,8 +7,40 @@ import { map, tap } from 'rxjs/operators';
 export class ShopifyService {
 
   constructor(private apollo: Apollo) { }
+  public getProductByHandle(productHandle) {
+    const query: any = gql`
+    {
 
-  public getCollection(collectionHandle) {
+      productByHandle(handle: "${productHandle}") {
+        title
+        description
+        images(first: 10) {
+          edges {
+            node {
+              id
+              originalSrc
+            }
+          }
+        }
+      }
+    }
+    `
+    return this.apollo.watchQuery({
+      // @ts-ignore
+      query: query,
+    }).valueChanges.pipe(
+      tap(obs => {
+        console.log(obs);
+        
+      }),
+      map(obs => {
+        return obs['data']
+      })
+    )
+  }
+
+
+  public getCollectionByHandle(collectionHandle) {
     const basicQuery: any = gql`
     {
       collectionByHandle(handle: "${collectionHandle}") {
@@ -19,6 +51,7 @@ export class ShopifyService {
               title
               description
               tags
+              handle
               images(first:1) {
                 edges {
                   node {

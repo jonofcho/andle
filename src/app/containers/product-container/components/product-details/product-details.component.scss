@@ -1,0 +1,45 @@
+.product-details-info-container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    background-color: black;
+    border-bottom: 1px solid black;
+    height: 100%;
+    grid-template-areas:
+    "title varianta"
+    "title variantb"
+    "description description"
+    "description description"
+    "price atc"
+    "price buy-now";
+}
+.product-details-info{
+    background-color: #F3EEDC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-details-info.title{
+    grid-area: title;
+}
+.product-details-info.variants.a{
+    grid-area: varianta;
+}
+.product-details-info.variants.b{
+    grid-area: variantb;
+}
+.product-details-info.description{
+    grid-area: description;
+    padding: 16px;
+}
+.product-details-info.price{
+    grid-area: price
+}
+.product-details-info.atc{
+    grid-area: atc
+}
+.product-details-info.buy{
+    grid-area: buy-now
+}

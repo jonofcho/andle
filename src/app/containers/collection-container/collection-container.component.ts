@@ -21,7 +21,7 @@ export class CollectionContainerComponent implements OnInit {
     if(currentRoute === '/' || currentRoute === '/shop'){
       currentRoute = 'frontpage'
     }
-    this.collectionByHandle = this.shopifyService.getCollection(currentRoute)
+    this.collectionByHandle = this.shopifyService.getCollectionByHandle(currentRoute)
 
   
   }
