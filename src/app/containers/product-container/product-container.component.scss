@@ -7,6 +7,8 @@
     height: 222vh;
     border: 1px solid black;
     @media only screen and (max-width: 960px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 450px auto;
         
     }
 }
@@ -14,5 +16,7 @@ app-product-details{
     position: sticky; // See link
     top: 0; //to make it stick to the top of the screen
     height: 100%; // make the height equal to 100 view height
-
+    @media only screen and (max-width: 960px) {
+        border-top:1px solid black;
+    }
 }
