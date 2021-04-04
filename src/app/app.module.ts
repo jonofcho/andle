@@ -11,24 +11,32 @@ import { CollectionContainerComponent } from './containers/collection-container/
 import { AboutUsComponent } from './containers/about-us/about-us.component';
 import { CollectionGridComponent } from './containers/collection-container/components/collection-grid/collection-grid.component';
 import { ProductContainerComponent } from './containers/product-container/product-container.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
+import { CollectionContainerModule } from './containers/collection-container/collection-container.module';
+import { ProductContainerModule } from './containers/product-container/product-container.module';
+import { ShopifyService } from './services/shopify.service';
+import { Apollo } from 'apollo-angular';
+import { HttpLink } from '@apollo/client/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CollectionGridComponent,
-    ProductContainerComponent,
     FooterComponent,
     HeaderComponent,
-    CollectionItemComponent,
     HeaderRoutingComponent,
-    CollectionContainerComponent,
     AboutUsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    GraphQLModule,
+    HttpClientModule,
+    CollectionContainerModule,
+    AppRoutingModule,
+    ProductContainerModule,
+    GraphQLModule
   ],
-  providers: [],
+  providers: [ShopifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

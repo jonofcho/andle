@@ -1,14 +1,6 @@
 <div class="collection-product-grid">
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
-    <collection-item></collection-item>
+
+    <collection-item *ngFor="let productData of collectionData"
+    [productData]="productData"></collection-item>
+
 </div>

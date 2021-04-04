@@ -9,7 +9,7 @@ import { CollectionGridComponent } from './containers/collection-container/compo
 const routes: Routes = [
   {
     path: '',
-    component: CollectionGridComponent
+    component: CollectionContainerComponent
   },
   {
     path: 'shop',
@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

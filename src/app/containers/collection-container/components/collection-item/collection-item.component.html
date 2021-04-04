@@ -1,13 +1,13 @@
 <div class="collection-product-grid-item">
     <div class="product-image-container" >
-        <img [routerLink]="['product', '100']" src="https://webstockreview.net/images/circle-clipart-beige.png" alt="">
+        <img [routerLink]="['/product', collItemId]" src="{{collItemImgSrc}}" alt="">
     </div>
     <div class="product-info product-name">
-        ohgakppul
+        {{collItemTitle}}
     </div>
     <div class="product-info product-variants">
         <div>
-            color
+            colors
         </div>
         <div>
             red red red red

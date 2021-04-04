@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'collection-grid',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collection-grid.component.scss']
 })
 export class CollectionGridComponent implements OnInit {
-
+  @Input() collectionData:Observable<any>
+  
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
