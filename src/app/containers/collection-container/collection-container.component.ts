@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopifyService } from 'src/app/services/shopify.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'collection-container',
@@ -8,14 +8,24 @@ import { ShopifyService } from 'src/app/services/shopify.service';
   styleUrls: ['./collection-container.component.scss']
 })
 export class CollectionContainerComponent implements OnInit {
-
-  constructor(private shopifyService: ShopifyService ) { }
-
+  public collectionByHandle;
+  constructor(
+    private shopifyService: ShopifyService,
+    private router: Router 
+    ) { }
+  
   ngOnInit() {
-    console.log('fired');
+    let currentRoute = this.router.url;
+    console.log(currentRoute);
     
-    this.shopifyService.getCollection()
+    if(currentRoute === '/' || currentRoute === '/shop'){
+      currentRoute = 'frontpage'
+    }
+    this.collectionByHandle = this.shopifyService.getCollection(currentRoute)
 
+  
   }
+
+
 
 }
