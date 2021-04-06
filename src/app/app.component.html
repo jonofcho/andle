@@ -1,7 +1,42 @@
 <div class="main-container">
-  <div class="content-container">
-    <header></header>
-    <header-routing></header-routing>
-    <router-outlet></router-outlet>
+  <div class="header-container" style="">
+    <div class="whitespace"></div>
+    <div class="mobile-nav-actions-container">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="snav.toggle()">
+        <mat-icon style="font-size:32px">menu</mat-icon>
+      </button>
+    </div>
+    <img [routerLink]="['/']" src="/assets/logo.png" alt="">
+    <div class="header-user-actions">
+      <a href="">login</a>
+      <a href="">cart</a>
+    </div>
   </div>
-</div>
+  <div class="header-routing-container">
+    <a class="header-routing-item" [routerLink]="['shop']">shop</a>
+    <a class="header-routing-item" [routerLink]="['/']">read</a>
+    <a class="header-routing-item" [routerLink]="['/']">archive</a>
+    <a class="header-routing-item" [routerLink]="['about']">about</a>
+    <div style="display:flex;">
+      <p>search</p>
+      <!-- <input class="{{searchInputStatus}}" type="text"> -->
+    </div>
+  </div>
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #snav fixedTopGap="56">
+      <mat-nav-list>
+        <div class="mobile-side-nav-container">
+            <a class="mobile-side-nav-item" mat-list-item routerLink="/">shop</a>
+            <a class="mobile-side-nav-item" mat-list-item routerLink="/">read</a>
+            <a class="mobile-side-nav-item" mat-list-item routerLink="/">archive</a>
+            <a class="mobile-side-nav-item" mat-list-item routerLink="/">about</a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

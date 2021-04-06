@@ -1,5 +1,6 @@
 img{
     max-width: 100%;
+    display: block;
 }
 .collection-product-grid-item{
     display: grid;
@@ -29,4 +30,7 @@ img{
 }
 .product-atc{
 
+}
+.product-image-container{
+    font-size: 0;
 }
