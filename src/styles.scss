@@ -46,6 +46,9 @@ html{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.bg-primary{
+  background-color: #F3EEDC;  
+}
 .flex-align-between{
   display: flex;
   justify-content: space-between;

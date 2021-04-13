@@ -15,11 +15,15 @@ import { MatListModule } from '@angular/material/list'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { CartContainerModule } from './containers/cart-container/cart-container.module';
+import { LoginContainerModule } from './containers/login-container/login-container.module';
+import { LoginComponent } from './containers/login-container/components/login/login.component';
+import { RegisterComponent } from './containers/login-container/components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     AboutUsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { CartContainerModule } from './containers/cart-container/cart-container.
     MatListModule,
     BrowserAnimationsModule,
     CartContainerModule,
+    LoginContainerModule,
   ],
   providers: [ShopifyService],
   bootstrap: [AppComponent]

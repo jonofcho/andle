@@ -5,6 +5,8 @@ import { AboutUsComponent } from './containers/about-us/about-us.component';
 import { ProductContainerComponent } from './containers/product-container/product-container.component';
 import { CollectionGridComponent } from './containers/collection-container/components/collection-grid/collection-grid.component';
 import { CartContainerComponent } from './containers/cart-container/cart-container.component';
+import { CustomerContainerComponent } from './containers/customer-container/customer-container.component';
+import { LoginContainerComponent } from './containers/login-container/login-container.component';
 
 
 const routes: Routes = [
@@ -18,7 +20,11 @@ const routes: Routes = [
   },
   {
     path: 'product/:id',
-    component: ProductContainerComponent
+    component: ProductContainerComponent,
+  },
+  {
+    path: 'login',
+    component: LoginContainerComponent,
   },
   // {
   //   path: 'read',

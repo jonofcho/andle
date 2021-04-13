@@ -1,0 +1,8 @@
+.login-reg-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    background-color: black;
+    grid-column-gap: 1px;
+    border: 1px solid black;
+}
