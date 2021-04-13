@@ -7,13 +7,62 @@ import { map, tap } from 'rxjs/operators';
 export class ShopifyService {
 
   constructor(private apollo: Apollo) { }
+  public addVariantToCart(variantDetails) {
+    console.log('shopify service product Details', variantDetails);
+    let variantId = variantDetails['id']
+    const mutation: any = gql`
+      mutation ($variantId: ID!) {
+        checkoutCreate(input: {
+          lineItems: [
+            { variantId: $variantId, quantity: 1 }
+            ]
+        }) {
+          checkout {
+            id
+            webUrl
+            lineItems(first: 5) {
+              edges {
+                node {
+                  title
+                  quantity
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+    return this.apollo.mutate({
+      // @ts-ignore
+      mutation: mutation,
+      variables: {
+        variantId
+      }
+    })
+  }
   public getProductByHandle(productHandle) {
     const query: any = gql`
     {
-
       productByHandle(handle: "${productHandle}") {
         title
         description
+        id
+        variants(first: 5){
+          edges{
+            node{
+              id
+              title
+              image{
+                originalSrc
+              }
+              priceV2{
+                amount
+                currencyCode
+              }
+              
+            }
+          }
+        }
         images(first: 10) {
           edges {
             node {
@@ -29,10 +78,6 @@ export class ShopifyService {
       // @ts-ignore
       query: query,
     }).valueChanges.pipe(
-      tap(obs => {
-        console.log(obs);
-        
-      }),
       map(obs => {
         return obs['data']
       })
@@ -72,9 +117,9 @@ export class ShopifyService {
       query: basicQuery,
     }).valueChanges.pipe(
       tap(obs => {
-        console.log('main observable' , obs);
-        
-      }), 
+        console.log('main observable', obs);
+
+      }),
       map(obs => {
         return obs['data']['collectionByHandle']['products']['edges']
       })

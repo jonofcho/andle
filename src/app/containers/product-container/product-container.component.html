@@ -1,4 +1,4 @@
 <div class="product-details-container">
     <app-product-image [images]="$productImages | async"></app-product-image>
-    <app-product-details [details]="$productData | async"></app-product-details>
+    <app-product-details *ngIf="$productData | async" [details]="$productData | async" (atcClick)="onAddToCart($event)"></app-product-details>
 </div>

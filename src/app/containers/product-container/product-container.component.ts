@@ -23,7 +23,7 @@ export class ProductContainerComponent implements OnInit {
       this.$productData = this.shopifyService.getProductByHandle(currentProductHandle)
       this.$productImages = this.$productData.pipe(
         tap(obs => {
-          console.log(obs);
+          console.log('this is the obs' , obs);
           
         }),
         map(obs => {
@@ -33,4 +33,12 @@ export class ProductContainerComponent implements OnInit {
     })
   }
 
+  public onAddToCart(productDetails){
+    console.log('cibtauber atc cifred');
+    
+    this.shopifyService.addVariantToCart(productDetails).subscribe(data => {
+      console.log('this is the return from atc' , data);
+      
+    })
+  }
 }

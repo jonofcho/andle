@@ -1,9 +1,13 @@
-<div class="product-details-info-container">
-    <div class="product-details-info title">
-        PRODUCT TITLE
+<div class="product-details-info-container" >
+    <div class="product-details-info title" *ngIf="productDetails">
+        {{productDetails.title}}
     </div>
     <div class="product-details-info variants a">
-        red red red red
+        <ng-container *ngFor="let variant of productVariants">
+            <div class="bg-{{variant.node.title | lowercase}} variant-selector" (click)="setSelectedVariant(variant)">
+                
+            </div>
+        </ng-container>
     </div>
     <div class="product-details-info variants b">
         product scent
@@ -22,7 +26,7 @@
     </div>
 
     <div class="product-details-info atc">
-        ADD TO CART
+        <button (click)="onAtcClick()">ADD TO CART</button>
     </div>
     <div class="product-details-info buy">
         BUY NOW

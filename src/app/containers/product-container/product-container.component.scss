@@ -1,8 +1,8 @@
 .product-details-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 640px 640px;
-    grid-auto-rows: 640px;
+    grid-template-rows: 540px;
+    grid-auto-rows: 540px;
     grid-row-gap: 1px;
     height: 222vh;
     border: 1px solid black;
@@ -14,9 +14,7 @@
     }
 }
 app-product-details{
-    position: sticky; // See link
-    top: 0; //to make it stick to the top of the screen
-    height: 100%; // make the height equal to 100 view height
+
     @media only screen and (max-width: 960px) {
         border-top:1px solid black;
         position: relative;
