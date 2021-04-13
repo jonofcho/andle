@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 640px 640px;
+    grid-auto-rows: 640px;
     grid-row-gap: 1px;
     height: 222vh;
     border: 1px solid black;

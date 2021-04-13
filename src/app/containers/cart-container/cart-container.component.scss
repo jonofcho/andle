@@ -1,0 +1,25 @@
+.cart-container{
+    display: flex;   
+    border: 1px solid black; 
+}
+.cart-items-container{
+    flex: 2;
+}
+.cart-summary-container{
+    flex: 1;
+}
+.cart-summary-container{
+    border-left: 1px solid black;
+    min-height: 100vh;
+}
+.cart-items-container-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-bottom: 1px solid black;
+
+}
+p{
+    margin: 0 0 0;
+}

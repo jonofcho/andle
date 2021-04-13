@@ -1,0 +1,24 @@
+p{
+    margin: 0 0 0;
+}
+.cart-summary-header-container{
+    display: grid;
+    grid-template-columns: 8fr 1fr 1fr;
+    grid-column-gap: 1px;
+    background-color: black;
+    border-bottom: 1px solid black;
+    height: 40px;
+}
+.cart-summary-header{
+    background-color: #F3EEDC;
+}
+.cart-summary-header.item{
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+.cart-summary-header.quantity{
+}
+.cart-summary-header.price{
+
+}

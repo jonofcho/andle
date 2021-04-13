@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CartContainerModule } from './containers/cart-container/cart-container.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     MatSidenavModule,
     MatListModule,
     BrowserAnimationsModule,
+    CartContainerModule,
   ],
   providers: [ShopifyService],
   bootstrap: [AppComponent]
