@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './containers/footer/footer.component';
@@ -16,8 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { CartContainerModule } from './containers/cart-container/cart-container.module';
 import { LoginContainerModule } from './containers/login-container/login-container.module';
-import { LoginComponent } from './containers/login-container/components/login/login.component';
-import { RegisterComponent } from './containers/login-container/components/register/register.component';
+import { CustomerService } from './services/customer.service';
+import { CookieService } from 'ngx-cookie-service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,17 @@ import { RegisterComponent } from './containers/login-container/components/regis
     CartContainerModule,
     LoginContainerModule,
   ],
-  providers: [ShopifyService],
+  providers: [
+    ShopifyService, 
+    CustomerService, 
+    CookieService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (ss: ShopifyService) => () => {return ss.createCheckout()},
+      deps: [ShopifyService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

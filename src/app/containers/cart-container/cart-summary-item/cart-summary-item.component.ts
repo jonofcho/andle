@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-summary-item',
@@ -6,10 +6,12 @@
   styleUrls: ['./cart-summary-item.component.scss']
 })
 export class CartSummaryItemComponent implements OnInit {
-  public cartItem;
+  @Input() public checkoutItem;
   constructor() { }
 
   ngOnInit(): void {
+  
+    
   }
 
 }

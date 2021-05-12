@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-summary-grid',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-summary-grid.component.scss']
 })
 export class CartSummaryGridComponent implements OnInit {
-  
+  @Input() public checkoutList
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.checkoutList)
   }
 
 }

@@ -5,8 +5,8 @@
         <p class="cart-summary-header price flex-align-center">price</p>
     </div>
     <div class="cart-summary-items-container">
-        <app-cart-summary-item></app-cart-summary-item>
-        <app-cart-summary-item></app-cart-summary-item>
-        <app-cart-summary-item></app-cart-summary-item>
+
+        <app-cart-summary-item *ngFor="let checkoutItem of checkoutList" [checkoutItem]="checkoutItem"></app-cart-summary-item>
+
     </div>
 </div>

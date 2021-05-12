@@ -1,42 +1,133 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, tap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
 export class ShopifyService {
 
-  constructor(private apollo: Apollo) { }
-  public addVariantToCart(variantDetails) {
-    console.log('shopify service product Details', variantDetails);
-    let variantId = variantDetails['id']
-    const mutation: any = gql`
-      mutation ($variantId: ID!) {
-        checkoutCreate(input: {
-          lineItems: [
-            { variantId: $variantId, quantity: 1 }
-            ]
-        }) {
-          checkout {
-            id
-            webUrl
-            lineItems(first: 5) {
-              edges {
-                node {
-                  title
-                  quantity
+  constructor(private apollo: Apollo, private cookieService: CookieService) { }
+
+  public createCheckout() {
+    let checkoutID = this.cookieService.get('checkoutID');
+    if (!checkoutID) {
+      const mutation = gql`
+        mutation {
+          checkoutCreate(input: {}) {
+            checkout {
+              id
+              webUrl
+              lineItems(first: 5) {
+                edges {
+                  node {
+                    title
+                    quantity
+                  }
                 }
               }
             }
           }
         }
+      `
+      this.apollo.mutate({
+        // @ts-ignore
+        mutation: mutation,
+      }).subscribe(checkoutData => {
+        let checkoutCreate = checkoutData['data']['checkoutCreate']
+        this.cookieService.set("checkoutID", checkoutCreate['checkout']['id'])
+        this.cookieService.set("checkoutUrl", checkoutCreate['checkout']['webUrl'])
+        console.log('this is the checkout data' , checkoutData);
+        
+      })
+  }
+}
+
+public getCheckoutDetails(checkoutID){
+  const query: any = gql`
+{
+	node(id:"${checkoutID}"){
+    id
+    ... on Checkout{
+      id
+      totalPriceV2{
+        amount
       }
-    `
+      lineItems(first: 20) {
+        edges {
+          node {
+            quantity
+						variant{
+              title
+              selectedOptions{
+                name
+                value
+              }
+              image(maxWidth: 300, maxHeight: 300){
+                originalSrc
+              }
+            }
+            title
+            
+          }
+        }
+      }
+    }
+  }
+}
+  `
+  return this.apollo.watchQuery({
+    // @ts-ignore
+    query: query,
+  }).valueChanges.pipe(
+    tap(obs => {
+      console.log(obs);
+      
+    }), 
+    map(obs => {
+      return obs['data']
+    })
+  )
+}
+
+
+
+
+  public addVariantToCart(variantDetails) {
+    let mutation: any;
+    let variantId = variantDetails['id']
+    let checkoutID = this.cookieService.get('checkoutID');
+    if (checkoutID) {
+      mutation = gql`
+        mutation ($variantId: ID!, $checkoutId: ID!) {
+          checkoutLineItemsAdd(
+            lineItems: [
+              { 
+                variantId: $variantId, quantity: 1 
+              }
+            ],
+            checkoutId: $checkoutId
+          ) {
+            checkout {
+              id
+              webUrl
+            }
+            checkoutUserErrors {
+              code
+              field
+              message
+            }
+          }
+        }
+      `
+    }
+
     return this.apollo.mutate({
       // @ts-ignore
       mutation: mutation,
       variables: {
-        variantId
+        variantId,
+        checkoutId: checkoutID
       }
     })
   }
@@ -116,10 +207,6 @@ export class ShopifyService {
       // @ts-ignore
       query: basicQuery,
     }).valueChanges.pipe(
-      tap(obs => {
-        console.log('main observable', obs);
-
-      }),
       map(obs => {
         return obs['data']['collectionByHandle']['products']['edges']
       })

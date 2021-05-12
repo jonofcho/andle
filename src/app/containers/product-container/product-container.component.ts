@@ -3,6 +3,7 @@ import { ShopifyService } from 'src/app/services/shopify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from '@apollo/client/core';
 import { map, tap } from 'rxjs/operators';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +15,7 @@ export class ProductContainerComponent implements OnInit {
   public $productData;
   public $productImages;
   public $productDetails;
-  constructor(private route: ActivatedRoute, private shopifyService: ShopifyService) { 
+  constructor(private route: ActivatedRoute, private customerService: CustomerService , private shopifyService:ShopifyService) { 
   }
 
   ngOnInit() {
@@ -22,10 +23,6 @@ export class ProductContainerComponent implements OnInit {
       let currentProductHandle = data.id;
       this.$productData = this.shopifyService.getProductByHandle(currentProductHandle)
       this.$productImages = this.$productData.pipe(
-        tap(obs => {
-          console.log('this is the obs' , obs);
-          
-        }),
         map(obs => {
           return obs['productByHandle']['images']['edges']
         })
@@ -34,11 +31,6 @@ export class ProductContainerComponent implements OnInit {
   }
 
   public onAddToCart(productDetails){
-    console.log('cibtauber atc cifred');
-    
-    this.shopifyService.addVariantToCart(productDetails).subscribe(data => {
-      console.log('this is the return from atc' , data);
-      
-    })
+    this.customerService.addVariantToCart(productDetails)
   }
 }
