@@ -3,11 +3,11 @@
         {{productDetails.title}}
     </div>
     <div class="product-details-info variants a">
-        <ng-container *ngFor="let variant of productVariants">
+        <div class="product-variant" *ngFor="let variant of productVariants">
             <div class="bg-{{variant.node.title | lowercase}} variant-selector" (click)="setSelectedVariant(variant)">
                 
             </div>
-        </ng-container>
+        </div>
     </div>
     <div class="product-details-info variants b">
         product scent

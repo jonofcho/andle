@@ -59,6 +59,9 @@
     width: 40px;
     height: 40px;
 }
+.product-variant + .product-variant{
+    margin-left : 8px;
+}
 @media only screen and (max-width: 960px) {
     
 }

@@ -34,9 +34,14 @@ img{
 .product-image-container{
     font-size: 0;
 }
+.variant-options-wrapper{
+    display: flex;
+}
 
 .color-option{
     width: 30px;
     height: 30px;
-    border: 1px solid black;
+}
+.color-option-wrapper + .color-option-wrapper{
+    margin-left: 8px;
 }
