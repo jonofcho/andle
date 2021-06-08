@@ -9,9 +9,11 @@
         <div>
             colors
         </div>
-        <div>
-            red red red red
-        </div>
+        <div *ngFor="let v of collItemVariants">
+            <div class="color-option bg-{{v.handle | lowercase}}">
+
+            </div>
+        </div>              
     </div>
     <div class="product-info product-atc">
         add to cart

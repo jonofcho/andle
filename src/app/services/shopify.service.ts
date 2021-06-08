@@ -177,6 +177,8 @@ public getCheckoutDetails(checkoutID){
 
 
   public getCollectionByHandle(collectionHandle) {
+    console.log('collectionHandle' , collectionHandle);
+    
     const basicQuery: any = gql`
     {
       collectionByHandle(handle: "${collectionHandle}") {
@@ -188,6 +190,14 @@ public getCheckoutDetails(checkoutID){
               description
               tags
               handle
+              variants(first:20){
+                edges{
+                  node{
+                    title
+                    id
+                  }
+                }
+              }
               images(first:1) {
                 edges {
                   node {

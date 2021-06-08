@@ -85,3 +85,29 @@ img{
 .mat-drawer-container{
     background-color: #F3EEDC;
 }
+
+.header-routing-item.shop{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.header-routing-item.about{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.header-search-item{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: end;
+    p{
+        margin-right: 8px;
+    }
+    input{
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid black;
+        outline: none;
+    }
+}
