@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopifyService } from 'src/app/services/shopify.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'collection-container',
@@ -11,7 +11,8 @@ export class CollectionContainerComponent implements OnInit {
   public collectionByHandle;
   constructor(
     private shopifyService: ShopifyService,
-    private router: Router 
+    private router: Router ,
+    private route:ActivatedRoute,
     ) { }
   
   ngOnInit() {
@@ -21,7 +22,22 @@ export class CollectionContainerComponent implements OnInit {
     if(currentRoute === '/' || currentRoute === '/shop'){
       currentRoute = 'frontpage'
     }
-    this.collectionByHandle = this.shopifyService.getCollectionByHandle(currentRoute)
+    this.route.queryParams
+    .subscribe(params => {
+      if(params.searchQuery != undefined){
+        let searchQuery = params.searchQuery;
+        console.log('search successful' , searchQuery); // { order: "popular" }
+        // params.searchQuery
+        // this.order = params.order;
+        // console.log(this.order); // popular
+        this.collectionByHandle = this.shopifyService.getProductsByQuery(searchQuery)
+      }else{
+        this.collectionByHandle = this.shopifyService.getCollectionByHandle(currentRoute)
+
+      }
+    }
+  );  
+
 
   
   }

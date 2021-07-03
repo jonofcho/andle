@@ -26,10 +26,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginContainerComponent,
   },
-  // {
-  //   path: 'read',
-  //   component: 
-  // },
+  {
+    path: 'collections',
+    component: CollectionContainerComponent,
+  },
   // {
   //   path: 'archive',
   //   component: 

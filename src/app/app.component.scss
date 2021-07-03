@@ -96,11 +96,24 @@ img{
     display: flex;
     justify-content: center;
 }
+.header-routing-item.search{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
 .header-search-item{
     display: flex;
     flex: 1;
     justify-content: flex-end;
     align-items: end;
+    position: relative;
+    mat-icon{
+        position: absolute;
+        bottom: 8px;
+        font-size: 15px;
+        right: -9px;
+    }
+    
     p{
         margin-right: 8px;
     }

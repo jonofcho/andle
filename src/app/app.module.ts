@@ -18,6 +18,9 @@ import { CartContainerModule } from './containers/cart-container/cart-container.
 import { LoginContainerModule } from './containers/login-container/login-container.module';
 import { CustomerService } from './services/customer.service';
 import { CookieService } from 'ngx-cookie-service'
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,17 +39,19 @@ import { CookieService } from 'ngx-cookie-service'
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     CartContainerModule,
     LoginContainerModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    ShopifyService, 
-    CustomerService, 
+    ShopifyService,
+    CustomerService,
     CookieService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (ss: ShopifyService) => () => {return ss.createCheckout()},
+      useFactory: (ss: ShopifyService) => () => { return ss.createCheckout() },
       deps: [ShopifyService],
       multi: true
     }

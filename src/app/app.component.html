@@ -17,20 +17,26 @@
     <a class="header-routing-item shop" [routerLink]="['shop']">shop</a>
     <!-- <a class="header-routing-item" [routerLink]="['/']">read</a>
     <a class="header-routing-item" [routerLink]="['/']">archive</a> -->
-    <a class="header-routing-item about" [routerLink]="['about']">about</a>
-    <div class="header-search-item">
-      <p>Search</p>
-      <input type="text">
+    <a class="header-routing-item about" (click)="openAbout()">about</a>
+    <div class="header-routing-item search">
+      <form onsubmit="onSearch($event)">
+        <div class="header-search-item">
+          <p>Search</p>
+          <input [formControl]="searchControl" type="text">
+          <mat-icon type="submit" (click)="onSearch($event)" aria-hidden="false" aria-label="Example home icon">search
+          </mat-icon>
+        </div>
+      </form>
     </div>
   </div>
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #snav fixedTopGap="56">
       <mat-nav-list>
         <div class="mobile-side-nav-container">
-            <a class="mobile-side-nav-item" mat-list-item routerLink="/">shop</a>
-            <a class="mobile-side-nav-item" mat-list-item routerLink="/">read</a>
-            <a class="mobile-side-nav-item" mat-list-item routerLink="/">archive</a>
-            <a class="mobile-side-nav-item" mat-list-item routerLink="/">about</a>
+          <a class="mobile-side-nav-item" mat-list-item routerLink="/">shop</a>
+          <a class="mobile-side-nav-item" mat-list-item routerLink="/">read</a>
+          <a class="mobile-side-nav-item" mat-list-item routerLink="/">archive</a>
+          <a class="mobile-side-nav-item" mat-list-item routerLink="/">about</a>
         </div>
       </mat-nav-list>
     </mat-sidenav>

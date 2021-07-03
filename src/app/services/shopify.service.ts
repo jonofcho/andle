@@ -37,14 +37,14 @@ export class ShopifyService {
         let checkoutCreate = checkoutData['data']['checkoutCreate']
         this.cookieService.set("checkoutID", checkoutCreate['checkout']['id'])
         this.cookieService.set("checkoutUrl", checkoutCreate['checkout']['webUrl'])
-        console.log('this is the checkout data' , checkoutData);
-        
-      })
-  }
-}
+        console.log('this is the checkout data', checkoutData);
 
-public getCheckoutDetails(checkoutID){
-  const query: any = gql`
+      })
+    }
+  }
+
+  public getCheckoutDetails(checkoutID) {
+    const query: any = gql`
 {
 	node(id:"${checkoutID}"){
     id
@@ -76,19 +76,19 @@ public getCheckoutDetails(checkoutID){
   }
 }
   `
-  return this.apollo.watchQuery({
-    // @ts-ignore
-    query: query,
-  }).valueChanges.pipe(
-    tap(obs => {
-      console.log(obs);
-      
-    }), 
-    map(obs => {
-      return obs['data']
-    })
-  )
-}
+    return this.apollo.watchQuery({
+      // @ts-ignore
+      query: query,
+    }).valueChanges.pipe(
+      tap(obs => {
+        console.log(obs);
+
+      }),
+      map(obs => {
+        return obs['data']
+      })
+    )
+  }
 
 
 
@@ -131,6 +131,57 @@ public getCheckoutDetails(checkoutID){
       }
     })
   }
+
+  public getProductsByQuery(searchquery) {
+    console.log('this is the searchQuery' , searchquery);
+    
+    const query: any = gql`
+    {
+      products(first: 20, query: "${searchquery}") {
+        edges {
+            node {
+              id
+              title
+              description
+              tags
+              handle
+              variants(first: 20){
+                edges{
+                  node{
+                    title
+                    id
+                  }
+                }
+              }
+              images(first: 1) {
+                edges {
+                  node {
+                    id
+                    src
+
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+    ` 
+    return this.apollo.watchQuery({
+      // @ts-ignore
+      query: query,
+    }).valueChanges.pipe(
+      map(obs => {
+        return obs['data']['products']['edges']
+      }),
+      tap(obs => {
+        console.log('this is the search obs' , obs);
+        return obs
+      }),
+    )
+  }
+
+
   public getProductByHandle(productHandle) {
     const query: any = gql`
     {
@@ -150,7 +201,7 @@ public getCheckoutDetails(checkoutID){
                 amount
                 currencyCode
               }
-              
+
             }
           }
         }
@@ -177,8 +228,8 @@ public getCheckoutDetails(checkoutID){
 
 
   public getCollectionByHandle(collectionHandle) {
-    console.log('collectionHandle' , collectionHandle);
-    
+    console.log('collectionHandle', collectionHandle);
+
     const basicQuery: any = gql`
     {
       collectionByHandle(handle: "${collectionHandle}") {
@@ -190,20 +241,20 @@ public getCheckoutDetails(checkoutID){
               description
               tags
               handle
-              variants(first:20){
+              variants(first: 20){
                 edges{
                   node{
                     title
-                    id  
+                    id
                   }
                 }
               }
-              images(first:1) {
+              images(first: 1) {
                 edges {
                   node {
                     id
                     src
-                    
+
                   }
                 }
               }
