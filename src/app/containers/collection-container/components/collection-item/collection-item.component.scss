@@ -8,12 +8,12 @@ img{
     grid-gap: 1px;
     border: 1px solid black;
     background-color: black;
-}
-.collection-product-grid-item{
+    height: 100%;
     div{
         background-color: #F3EEDC;
     }
 }
+
 
 .product-info{
     display: flex;
@@ -33,6 +33,15 @@ img{
 }
 .product-image-container{
     font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img{
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%
+    }
 }
 .variant-options-wrapper{
     display: flex;

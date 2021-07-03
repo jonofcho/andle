@@ -18,6 +18,7 @@
     <!-- <a class="header-routing-item" [routerLink]="['/']">read</a>
     <a class="header-routing-item" [routerLink]="['/']">archive</a> -->
     <a class="header-routing-item about" (click)="openAbout()">about</a>
+
     <div class="header-routing-item search">
       <form onsubmit="onSearch($event)">
         <div class="header-search-item">
@@ -33,10 +34,10 @@
     <mat-sidenav #snav fixedTopGap="56">
       <mat-nav-list>
         <div class="mobile-side-nav-container">
-          <a class="mobile-side-nav-item" mat-list-item routerLink="/">shop</a>
-          <a class="mobile-side-nav-item" mat-list-item routerLink="/">read</a>
-          <a class="mobile-side-nav-item" mat-list-item routerLink="/">archive</a>
-          <a class="mobile-side-nav-item" mat-list-item routerLink="/">about</a>
+          <a class="mobile-side-nav-item" mat-list-item [routerLink]="['shop']">shop</a>
+          <!-- <a class="mobile-side-nav-item" mat-list-item [routerLink]="p">read</a>
+          <a class="mobile-side-nav-item" mat-list-item [routerLink]="/">archive</a> -->
+          <a class="mobile-side-nav-item" mat-list-item [routerLink]="['about']">about</a>
         </div>
       </mat-nav-list>
     </mat-sidenav>

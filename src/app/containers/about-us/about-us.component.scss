@@ -4,8 +4,11 @@
         max-width: 250px;
     }
     text-align: center;
-    width: 700px;
-    padding: 60px;
+    @media only screen and (min-width: 961px) {
+        width: 700px;
+        padding: 60px;
+    }
+
 }
 .about-us-content{
     max-width: 400px;
