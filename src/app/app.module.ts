@@ -20,6 +20,7 @@ import { CustomerService } from './services/customer.service';
 import { CookieService } from 'ngx-cookie-service'
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './containers/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CartContainerModule,
     LoginContainerModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [
     ShopifyService,

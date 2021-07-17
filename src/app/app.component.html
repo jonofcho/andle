@@ -12,6 +12,9 @@
       <a href="/login">login</a>
       <a href="/cart">cart</a>
     </div>
+    <!-- <div>
+      <mat-icon>shopping_bag</mat-icon>
+    </div> -->
   </div>
   <div class="header-routing-container">
     <a class="header-routing-item shop" [routerLink]="['shop']">shop</a>
@@ -20,13 +23,15 @@
     <a class="header-routing-item about" [routerLink]="['about']">about</a>
 
     <div class="header-routing-item search">
-      <form onsubmit="onSearch($event)">
+      <form (ngSubmit)="onSearch($event)" (keyup.enter)="onSearch($event)">
         <div class="header-search-item">
           <p>Search</p>
           <input [formControl]="searchControl" type="text">
-          <mat-icon type="submit" (click)="onSearch($event)" aria-hidden="false" aria-label="Example home icon">search
+          <mat-icon autofocus type="submit" (click)="onSearch($event)" aria-hidden="false"
+            aria-label="Example home icon">search
           </mat-icon>
         </div>
+        <!-- <button type="button" style="display:none" >hidden submit</button> -->
       </form>
     </div>
   </div>
@@ -47,3 +52,5 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
+</div>
+<app-footer></app-footer>

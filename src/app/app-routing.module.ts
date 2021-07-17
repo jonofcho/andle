@@ -7,6 +7,7 @@ import { CollectionGridComponent } from './containers/collection-container/compo
 import { CartContainerComponent } from './containers/cart-container/cart-container.component';
 import { CustomerContainerComponent } from './containers/customer-container/customer-container.component';
 import { LoginContainerComponent } from './containers/login-container/login-container.component';
+import { MissingPageComponent } from './containers/shared/missing-page/missing-page.component';
 
 
 const routes: Routes = [
@@ -41,8 +42,16 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartContainerComponent,
+  },
+  { 
+    path: '404', 
+    component: MissingPageComponent 
+  },
+  { 
+    path: '**', 
+    redirectTo: '/404' 
   }
-  
+
 ];
 
 @NgModule({

@@ -74,7 +74,10 @@ export class ProductContainerComponent implements OnInit {
           let prodImageAltText:string = pi['node']['altText']
           return prodImageAltText === color || prodImageAltText === 'Collection';
         })
-        return variantImages.reverse()
+        if(variantImages.length > 1){
+          return variantImages.reverse()
+        }
+        return variantImages
       })
     )
   }
@@ -90,9 +93,11 @@ export class ProductContainerComponent implements OnInit {
     })
     this.relatedProducts = this.relatedProducts.map(rp => {
       let obj = {}
+      console.log('handle' , handle);
+      
       obj['productTitle'] = parentProduct['productByHandle']['title'];
       obj['variantImg'] = rp['node']['image']['originalSrc'];
-      obj['productHandle'] = handle;
+      obj['productHandle'] = handle.id  ;
       obj['variantTitle'] = rp['node']['title'];;
 
 

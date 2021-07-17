@@ -172,6 +172,9 @@ export class ShopifyService {
                   node{
                     title
                     id
+                    image{
+                      originalSrc
+                    }
                   }
                 }
               }
@@ -194,12 +197,15 @@ export class ShopifyService {
       query: query,
     }).valueChanges.pipe(
       map(obs => {
-        return obs['data']['products']['edges']
+        console.log(obs);
+        
+        let product = obs['data']['products']['edges']
+        return product
       }),
-      tap(obs => {
-        console.log('this is the search obs', obs);
-        return obs
-      }),
+      map((productobs: any[]) => {
+        return this.getVariantArr(productobs)
+
+      })
     )
   }
 
@@ -300,31 +306,34 @@ export class ShopifyService {
         return product
       }),
       map((productobs: any[]) => {
-        console.log('this isthe productobs', productobs);
-        let variantArr = [];
-        productobs.map(p => {
-          let prod = p['node']
-          prod['variants']['edges'].map(variant => {
-            let obj = {};
-            obj['productDescription'] = prod['description'];
-            obj['productHandle'] = prod['handle'];
-            obj['productId'] = prod['id'];
-            obj['productTags'] = prod['tags'];
-            obj['productTitle'] = prod['title'];
-            obj['variantId'] = variant['node']['id']
-            obj['variantTitle'] = variant['node']['title']
-            console.log(variant['node']);
-            
-            obj['variantImg'] = variant['node']['image']['originalSrc']
-            variantArr.push(obj)
-          })
-        })
-        console.log('this is the variant ARr', variantArr);
-
-        return variantArr
+        return this.getVariantArr(productobs)
 
       })
 
     )
+  }
+
+  private getVariantArr(productobs){
+    console.log('this isthe productobs', productobs);
+    let variantArr = [];
+    productobs.map(p => {
+      let prod = p['node']
+      prod['variants']['edges'].map(variant => {
+        let obj = {};
+        obj['productDescription'] = prod['description'];
+        obj['productHandle'] = prod['handle'];
+        obj['productId'] = prod['id'];
+        obj['productTags'] = prod['tags'];
+        obj['productTitle'] = prod['title'];
+        obj['variantId'] = variant['node']['id']
+        obj['variantTitle'] = variant['node']['title']
+        console.log(variant['node']);
+        
+        obj['variantImg'] = variant['node']['image']['originalSrc']
+        variantArr.push(obj)
+      })
+    })
+
+    return variantArr
   }
 }

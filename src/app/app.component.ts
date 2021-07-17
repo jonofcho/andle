@@ -19,7 +19,7 @@ export class AppComponent {
 
   onSearch(evt) {
     console.log('this is the search', this.searchControl);
-
+    
     this.router.navigate(['collections'], { queryParams: { searchQuery: this.searchControl.value } })
   }
 }

@@ -1,0 +1,24 @@
+.footer-container{
+    padding: 2em 12%;
+    background-color: #252525;
+    color: #F4F3E9;
+    width: 100%;
+    .footer-content{
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-column-gap: 16px;
+        border-bottom: 1px solid #F4F3E9;
+        margin-bottom: 8px;
+    }
+
+    h3{
+        border-bottom: 1px solid #F4F3E9;
+    }
+    ul{ 
+        padding:0;
+        li{
+            list-style: none;
+            margin-bottom: 8px;
+        }
+    }
+}

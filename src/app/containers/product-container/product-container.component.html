@@ -3,8 +3,8 @@
     <app-product-details *ngIf="$variantData | async" [details]="$variantData | async" (atcClick)="onAddToCart($event)">
     </app-product-details>
 </div>
-<div class="product-details-related-container">
-    <p>RELATED PROD.</p>
+<div class="product-details-related-container" *ngIf="relatedProducts.length > 0">
+    <h3 class="product-details-related-header">RELATED PROD.</h3>
     <div class="product-details-related">
         <!-- <collection-item></collection-item>
     <collection-item></collection-item>
