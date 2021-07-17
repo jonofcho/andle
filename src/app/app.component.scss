@@ -22,6 +22,7 @@ img{
     display:grid; 
     grid-template-columns: 100px 1fr 100px;
     justify-content:space-between; 
+    align-items: center;
     a{
         color:black;
     }
@@ -36,7 +37,12 @@ img{
 .header-user-actions{
     width: 100px;
     text-align: right;
+    mat-icon{
+        display: none;
+    }
 }
+
+
 .mobile-nav-actions-container{
     display: none;
 }   
@@ -77,11 +83,16 @@ img{
         a{
             display: none;
         }
+        mat-icon{
+            display: block;
+        }
     }
+
     .header-container{
         grid-template-columns: 40px 1fr 40px;
         margin-top:16px;
         margin-bottom: 16px;
+        align-items: center;
     }
 }
 .mat-drawer-container{
@@ -127,3 +138,32 @@ img{
         outline: none;
     }
 }
+
+mat-sidenav{
+    width: 100%;
+    background: rgba(243,238,220, 0.699) !important;
+    // position: relative;
+}
+.mobile-side-nav-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-search-input{
+    // width: 100%;
+    width: 0%;
+    opacity: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    transition: .3s ease all;
+}
+.mobile-search-input.active{
+    opacity: 100;
+    width: 90%;
+}
+

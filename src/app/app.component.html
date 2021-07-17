@@ -11,10 +11,9 @@
     <div class="header-user-actions">
       <a href="/login">login</a>
       <a href="/cart">cart</a>
+      <mat-icon [routerLink]="['/cart']" routerLinkActive="router-link-active" >shopping_bag</mat-icon>
     </div>
-    <!-- <div>
-      <mat-icon>shopping_bag</mat-icon>
-    </div> -->
+
   </div>
   <div class="header-routing-container">
     <a class="header-routing-item shop" [routerLink]="['shop']">shop</a>
@@ -23,7 +22,7 @@
     <a class="header-routing-item about" [routerLink]="['about']">about</a>
 
     <div class="header-routing-item search">
-      <form (ngSubmit)="onSearch($event)" (keyup.enter)="onSearch($event)">
+      <form onSubmit="return false;" (keyup.enter)="onSearch($event)">
         <div class="header-search-item">
           <p>Search</p>
           <input [formControl]="searchControl" type="text">
@@ -35,14 +34,30 @@
       </form>
     </div>
   </div>
-  <mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav-container class="example-sidenav-container" [hasBackdrop]="false">
     <mat-sidenav #snav fixedTopGap="56">
       <mat-nav-list>
         <div class="mobile-side-nav-container">
-          <a class="mobile-side-nav-item" mat-list-item [routerLink]="['shop']">shop</a>
-          <!-- <a class="mobile-side-nav-item" mat-list-item [routerLink]="p">read</a>
-          <a class="mobile-side-nav-item" mat-list-item [routerLink]="/">archive</a> -->
-          <a class="mobile-side-nav-item" mat-list-item [routerLink]="['about']">about</a>
+          <div>
+            <div styl>
+              <a class="mobile-side-nav-item" mat-list-item (click)="setSearchActive()">
+                search
+                <form style="width: 100%;" onSubmit="return false;" (keyup.enter)="onSearch($event)">
+                  <input class="mobile-search-input" [ngClass]="{active: isSearchActive}" [formControl]="searchControl" type="text">
+                  <!-- <button type="button" (keyup.enter)="onSearch($event)"></button> -->
+                </form>
+              </a>
+
+            </div>
+            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['shop']">shop</a>
+            <!-- <a class="mobile-side-nav-item" mat-list-item [routerLink]="p">read</a>
+    <a class="mobile-side-nav-item" mat-list-item [routerLink]="/">archive</a> -->
+            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['about']">about</a>
+          </div>
+          <div>
+            <a class="mobile-side-nav-item" mat-list-item>customer service</a>
+
+          </div>
         </div>
       </mat-nav-list>
     </mat-sidenav>

@@ -11,7 +11,9 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent {
   title = 'andle';
-  public searchControl: FormControl = new FormControl('');;
+  public searchControl: FormControl = new FormControl('');
+  public isSearchActive:boolean = false;
+
   constructor(
     public dialog: MatDialog,
     public router: Router
@@ -19,7 +21,11 @@ export class AppComponent {
 
   onSearch(evt) {
     console.log('this is the search', this.searchControl);
-    
-    this.router.navigate(['collections'], { queryParams: { searchQuery: this.searchControl.value } })
+    if(this.searchControl.value.length > 0){
+      this.router.navigate(['collections'], { queryParams: { searchQuery: this.searchControl.value } })
+    }
+  }
+  setSearchActive(){
+    this.isSearchActive = true;
   }
 }
