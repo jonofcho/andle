@@ -1,4 +1,14 @@
 <div class="product-details-container">
     <app-product-image [images]="$variantImages | async"></app-product-image>
-    <app-product-details *ngIf="$variantData | async" [details]="$variantData | async" (atcClick)="onAddToCart($event)"></app-product-details>
+    <app-product-details *ngIf="$variantData | async" [details]="$variantData | async" (atcClick)="onAddToCart($event)">
+    </app-product-details>
+</div>
+<div class="product-details-related-container">
+    <p>RELATED PROD.</p>
+    <div class="product-details-related">
+        <!-- <collection-item></collection-item>
+    <collection-item></collection-item>
+    <collection-item></collection-item> -->
+        <collection-item *ngFor="let productData of relatedProducts" [productData]="productData"></collection-item>
+    </div>
 </div>

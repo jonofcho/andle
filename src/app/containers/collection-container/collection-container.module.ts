@@ -16,6 +16,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     CommonModule,
     AppRoutingModule,
+  ],
+  exports: [
+    CollectionItemComponent,
   ]
 })
 export class CollectionContainerModule { }

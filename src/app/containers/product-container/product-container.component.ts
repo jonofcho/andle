@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ShopifyService } from 'src/app/services/shopify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map, tap, concatMap } from 'rxjs/operators';
@@ -7,10 +7,12 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-product',
   templateUrl: './product-container.component.html',
-  styleUrls: ['./product-container.component.scss']
+  styleUrls: ['./product-container.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductContainerComponent implements OnInit {
   public productObs;
+  public relatedProducts:any[] = []
   public $productData;
   public $productImages;
   public $productDetails;
@@ -39,11 +41,12 @@ export class ProductContainerComponent implements OnInit {
         this.$variantData = this.$productData.pipe(
           map(productObs => {
             let varArr = productObs['productByHandle']['variants']['edges']
+            let newProductObs = JSON.parse(JSON.stringify(productObs));
+            this.getRelatedProducts(params , newProductObs, varArr, queryParams.id)
             console.log(productObs['productByHandle']['variants']['edges']);
             let currentVariantData = varArr.find(v => {
               return v['node']['id'] === queryParams.id;
             })
-            let newProductObs = JSON.parse(JSON.stringify(productObs));
             newProductObs['currentVariantData'] = currentVariantData['node'];
             return newProductObs
           }),
@@ -78,5 +81,29 @@ export class ProductContainerComponent implements OnInit {
 
   public onAddToCart(productDetails) {
     this.customerService.addVariantToCart(productDetails)
+  }
+
+  public getRelatedProducts(handle , parentProduct , varArr, currentVariantId) {
+    console.log('related PRoducts' , parentProduct,  varArr);
+    this.relatedProducts = varArr.filter(v => {
+      return v['node']['id'] != currentVariantId;
+    })
+    this.relatedProducts = this.relatedProducts.map(rp => {
+      let obj = {}
+      obj['productTitle'] = parentProduct['productByHandle']['title'];
+      obj['variantImg'] = rp['node']['image']['originalSrc'];
+      obj['productHandle'] = handle;
+      obj['variantTitle'] = rp['node']['title'];;
+
+
+      return obj
+    })
+    if(this.relatedProducts.length > 3){
+    
+      this.relatedProducts = this.relatedProducts.slice(0,2);
+
+    }
+    console.log('these are the related PRoducts' , this.relatedProducts);
+    
   }
 }

@@ -27,3 +27,27 @@ app-product-image::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+.product-details-related-container{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    @media only screen and (max-width: 960px) {
+        display: none;
+    }
+
+}
+.product-details-related{
+    display: flex;
+    border-top: 1px solid black;
+    @media only screen and (min-width: 961px) {
+        collection-item{
+            flex: 2;
+            .collection-product-grid-item{
+                border: none !important;
+            }
+        }
+        collection-item + collection-item{
+            border-left: 1px solid black;
+        }
+    }
+}
