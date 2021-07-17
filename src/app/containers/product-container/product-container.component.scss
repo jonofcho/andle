@@ -23,3 +23,7 @@ app-product-image{
     overflow-y: scroll;
     background-color: #F3EEDC; 
 }
+app-product-image::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}

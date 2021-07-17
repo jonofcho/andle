@@ -26,9 +26,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 8px;
 }
 .product-details-info.title{
     grid-area: title;
+    
 }
 .product-details-info.variants.a{
     grid-area: varianta;

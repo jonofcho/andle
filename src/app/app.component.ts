@@ -16,13 +16,6 @@ export class AppComponent {
     public dialog: MatDialog,
     public router: Router
   ) { }
-  public openAbout() {
-    const dialogRef = this.dialog.open(AboutUsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
   onSearch(evt) {
     console.log('this is the search', this.searchControl);

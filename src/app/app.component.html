@@ -17,7 +17,7 @@
     <a class="header-routing-item shop" [routerLink]="['shop']">shop</a>
     <!-- <a class="header-routing-item" [routerLink]="['/']">read</a>
     <a class="header-routing-item" [routerLink]="['/']">archive</a> -->
-    <a class="header-routing-item about" (click)="openAbout()">about</a>
+    <a class="header-routing-item about" [routerLink]="['about']">about</a>
 
     <div class="header-routing-item search">
       <form onsubmit="onSearch($event)">

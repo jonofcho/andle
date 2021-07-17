@@ -1,20 +1,23 @@
 <div class="collection-product-grid-item">
     <div class="product-image-container" >
-        <img [routerLink]="['/product', collItemHandle]" src="{{collItemImgSrc}}" alt="">
+        <img [routerLink]="['/product', collItemHandle,]" [queryParams]="{ id: collItemVariantId}" src="{{collItemImgSrc}}" alt="">
     </div>
     <div class="product-info product-name">
-        {{collItemTitle}}
+        <p [routerLink]="['/product', collItemHandle,]">{{collItemTitle}}</p>
     </div>
     <div class="product-info product-variants">
-        <div>
-            colors
-        </div>
-        <div class="variant-options-wrapper">
+        <p>
+            {{collItemVariantColor}}
+        </p>
+        <p>
+            {{collItemVariantScent}}
+        </p>
+        <!-- <div class="variant-options-wrapper">
             <div class="color-option-wrapper" *ngFor="let v of collItemVariants" >
                 <div class="color-option bg-{{v.handle | lowercase}}">
                 </div>
             </div>              
-        </div>
+        </div> -->
     </div>
     <div class="product-info product-atc">
         add to cart

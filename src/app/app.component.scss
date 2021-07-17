@@ -11,6 +11,7 @@
     max-width: 1645px;
     margin: 0 auto;
     min-height: 100vh;
+    overflow-y: hidden;
 }
 
 img{
@@ -21,14 +22,15 @@ img{
     display:grid; 
     grid-template-columns: 100px 1fr 100px;
     justify-content:space-between; 
-    align-items:center;
     a{
         color:black;
     }
     a + a {
         margin-left: 24px;
     }
-    margin-bottom: 24px;
+    align-items: flex-end;
+    margin-bottom: 80px;
+    margin-top: 64px;
     
 }
 .header-user-actions{
@@ -104,12 +106,13 @@ img{
 .header-search-item{
     display: flex;
     flex: 1;
-    justify-content: flex-end;
-    align-items: end;
+    justify-content: space-between;
+    align-items: baseline;
     position: relative;
+    width: 200px;
     mat-icon{
         position: absolute;
-        bottom: 8px;
+        bottom: -6;
         font-size: 15px;
         right: -9px;
     }

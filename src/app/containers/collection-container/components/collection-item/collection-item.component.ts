@@ -6,31 +6,41 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./collection-item.component.scss']
 })
 export class CollectionItemComponent implements OnInit {
-  public collItemTitle:string;
+  public collItemTitle: string;
   public collItemImgSrc: string;
-  public collItemHandle:string;
+  public collItemHandle: string;
   public collItemVariants: any[];
-  @Input() set productData(values) {
-    
-    this.collItemTitle = values.node.title;
-    this.collItemImgSrc = values.node.images.edges[0].node.src
-    this.collItemHandle = values.node.handle;
-    this.collItemVariants = values.node.variants.edges.map(v => {
-      let obj = {};
-      obj['handle'] = v.node.title.split(' ').join('-');
-      obj['id'] = v.node.id;
-      return obj
-    })
+  public collItemSubTitle: string;
+  public collItemVariantColor: string;
+  public collItemVariantScent: string;
 
-    console.log('these are thevalues', this.collItemTitle , values.node);
-    console.log('variants' , );
+  public collItemVariantId: string;
+  @Input() set productData(values) {
+    console.log(values);
     
+    this.collItemTitle = values.productTitle;
+    this.collItemImgSrc = values.variantImg;
+    this.collItemHandle = values.productHandle;
+    this.collItemVariantColor = values.variantTitle.split(' / ')[0];
+    this.collItemVariantScent = values.variantTitle.split(' / ')[1];
+
+    this.collItemVariantId = values.variantId;
+    // this.collItemVariants = values.node.variants.edges.map(v => {
+    //   let obj = {};
+    //   obj['handle'] = v.node.title.split(' ').join('-');
+    //   obj['id'] = v.node.id;
+    //   return obj
+    // })
+
+    console.log('these are thevalues', this.collItemTitle, values.node);
+    console.log('variants');
+
   }
-  
+
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 }

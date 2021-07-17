@@ -1,5 +1,7 @@
-<ng-container *ngFor="let img of images">
-    <div class="image-container">
-        <img src="{{img.node.originalSrc}}" alt="">
-    </div>
-</ng-container>
+<div class="image-collage-container">
+    <ng-container *ngFor="let img of images">
+        <div class="image-container">
+            <img src="{{img.node.originalSrc}}" alt="">
+        </div>
+    </ng-container>
+</div>

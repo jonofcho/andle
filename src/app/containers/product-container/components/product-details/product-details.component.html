@@ -1,28 +1,22 @@
-<div class="product-details-info-container" >
-    <div class="product-details-info title" *ngIf="productDetails">
+<div class="product-details-info-container" *ngIf="productDetails">
+    <div class="product-details-info title">
         {{productDetails.title}}
     </div>
     <div class="product-details-info variants a">
-        <div class="product-variant" *ngFor="let variant of productVariants">
-            <div class="bg-{{variant.node.title | lowercase}} variant-selector" (click)="setSelectedVariant(variant)">
-                
-            </div>
-        </div>
+        {{currentVariantDetails.variantColor}}
     </div>
     <div class="product-details-info variants b">
-        product scent
+        {{currentVariantDetails.variantScent}}
     </div>
     <div class="product-details-info description">
         <div>
-            <p>PRODUCT DESCRIPTION (FPO)</p>
-            <p> The striking grey façade is fashioned from ribbed concrete tiles, recalling the mountain’s many faces,
-                and
-                the tactile qualities of alpine peaks. This treatment wraps back into the store, enveloping the
+            <p>
+                {{productDetails.description}}
             </p>
         </div>
     </div>
     <div class="product-details-info price">
-        $200.00
+        ${{currentVariantDetails.variantPrice}}
     </div>
 
     <div class="product-details-info atc">

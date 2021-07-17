@@ -7,7 +7,7 @@ img{
     grid-template-rows: auto 50px 50px 50px;
     grid-gap: 1px;
     border: 1px solid black;
-    background-color: black;
+    // background-color: black;
     height: 100%;
     div{
         background-color: #F3EEDC;
@@ -21,12 +21,20 @@ img{
     padding: 0 8px;
 }
 .product-name{
-    
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    p{
+        margin: 0;
+    }
 }
 .product-variants{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid;
 }
 .product-atc{
 
@@ -37,6 +45,7 @@ img{
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-bottom: 1px solid black;
     img{
         flex-shrink: 0;
         min-width: 100%;

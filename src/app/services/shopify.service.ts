@@ -9,6 +9,28 @@ export class ShopifyService {
 
   constructor(private apollo: Apollo, private cookieService: CookieService) { }
 
+  public createCustomer(input) {
+    const mutation = gql`
+
+    mutation customerCreate($input: CustomerInput!) {
+      customerCreate(input: $input) {
+        customer {
+          id
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }`
+    this.apollo.mutate({
+      // @ts-ignore
+      mutation: mutation,
+    }).subscribe(checkoutData => { })
+
+  }
+
+
   public createCheckout() {
     let checkoutID = this.cookieService.get('checkoutID');
     if (!checkoutID) {
@@ -133,8 +155,8 @@ export class ShopifyService {
   }
 
   public getProductsByQuery(searchquery) {
-    console.log('this is the searchQuery' , searchquery);
-    
+    console.log('this is the searchQuery', searchquery);
+
     const query: any = gql`
     {
       products(first: 20, query: "${searchquery}") {
@@ -166,7 +188,7 @@ export class ShopifyService {
           }
         }
     }
-    ` 
+    `
     return this.apollo.watchQuery({
       // @ts-ignore
       query: query,
@@ -175,7 +197,7 @@ export class ShopifyService {
         return obs['data']['products']['edges']
       }),
       tap(obs => {
-        console.log('this is the search obs' , obs);
+        console.log('this is the search obs', obs);
         return obs
       }),
     )
@@ -189,13 +211,14 @@ export class ShopifyService {
         title
         description
         id
-        variants(first: 5){
+        variants(first: 10){
           edges{
             node{
               id
               title
               image{
                 originalSrc
+                altText
               }
               priceV2{
                 amount
@@ -205,11 +228,12 @@ export class ShopifyService {
             }
           }
         }
-        images(first: 10) {
+        images(first: 30) {
           edges {
             node {
               id
               originalSrc
+              altText
             }
           }
         }
@@ -246,6 +270,9 @@ export class ShopifyService {
                   node{
                     title
                     id
+                    image{
+                      originalSrc
+                    }
                   }
                 }
               }
@@ -269,8 +296,35 @@ export class ShopifyService {
       query: basicQuery,
     }).valueChanges.pipe(
       map(obs => {
-        return obs['data']['collectionByHandle']['products']['edges']
+        let product = obs['data']['collectionByHandle']['products']['edges']
+        return product
+      }),
+      map((productobs: any[]) => {
+        console.log('this isthe productobs', productobs);
+        let variantArr = [];
+        productobs.map(p => {
+          let prod = p['node']
+          prod['variants']['edges'].map(variant => {
+            let obj = {};
+            obj['productDescription'] = prod['description'];
+            obj['productHandle'] = prod['handle'];
+            obj['productId'] = prod['id'];
+            obj['productTags'] = prod['tags'];
+            obj['productTitle'] = prod['title'];
+            obj['variantId'] = variant['node']['id']
+            obj['variantTitle'] = variant['node']['title']
+            console.log(variant['node']);
+            
+            obj['variantImg'] = variant['node']['image']['originalSrc']
+            variantArr.push(obj)
+          })
+        })
+        console.log('this is the variant ARr', variantArr);
+
+        return variantArr
+
       })
+
     )
   }
 }
