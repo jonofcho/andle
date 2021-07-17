@@ -27,8 +27,12 @@ export class CartContainerComponent implements OnInit {
       map(obs => {
         let obj = {
           subtotalPrice: obs['node']['subtotalPriceV2']['amount'],
-          totalPrice: obs['node']['totalPriceV2']['amount']
+          totalPrice: obs['node']['totalPriceV2']['amount'],
+          // shippingPrice: obs['node']['shippingLine']['priceV2']['amount'],
+          totalTax: obs['node']['totalTaxV2']['amount']
+
         }
+        return obj
       })
     )
   }

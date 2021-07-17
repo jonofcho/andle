@@ -99,6 +99,11 @@ img{
     background-color: #F3EEDC;
 }
 
+.header-routing-container{
+    a{
+        color: black;
+    }
+}
 .header-routing-item.shop{
     flex: 1;
     display: flex;
@@ -126,10 +131,11 @@ img{
         bottom: -6;
         font-size: 15px;
         right: -9px;
+        cursor: pointer;
     }
-    
     p{
         margin-right: 8px;
+        cursor: default;
     }
     input{
         border: none;
@@ -166,4 +172,6 @@ mat-sidenav{
     opacity: 100;
     width: 90%;
 }
-
+.header-image{
+    cursor: pointer;
+}

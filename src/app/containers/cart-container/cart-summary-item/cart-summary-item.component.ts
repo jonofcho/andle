@@ -10,7 +10,8 @@ export class CartSummaryItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  
+    console.log('this is the checkoutItem' , this.checkoutItem);
+    
     
   }
 

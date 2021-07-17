@@ -6,6 +6,6 @@
         <app-cart-summary-grid [checkoutList]="$checkoutList | async"></app-cart-summary-grid>
     </div>
     <div class="cart-summary-container">
-        <app-cart-summary></app-cart-summary>
+        <app-cart-summary [checkoutSummaryDetails]="$checkoutSummaryDetails | async"></app-cart-summary>
     </div>
 </div>

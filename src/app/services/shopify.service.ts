@@ -72,7 +72,18 @@ export class ShopifyService {
     id
     ... on Checkout{
       id
+      subtotalPriceV2{
+        amount
+      }
       totalPriceV2{
+        amount
+      }
+      shippingLine{
+				priceV2{
+          amount
+        }
+      }
+      totalTaxV2{
         amount
       }
       lineItems(first: 20) {
@@ -81,6 +92,9 @@ export class ShopifyService {
             quantity
 						variant{
               title
+              priceV2{
+                amount
+              }
               selectedOptions{
                 name
                 value

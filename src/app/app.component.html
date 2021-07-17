@@ -7,7 +7,7 @@
         <mat-icon style="font-size:32px">menu</mat-icon>
       </button>
     </div>
-    <img [routerLink]="['/']" src="/assets/logo.png" alt="">
+    <img class="header-image" [routerLink]="['/']" src="/assets/logo.png" alt="">
     <div class="header-user-actions">
       <a href="/login">login</a>
       <a href="/cart">cart</a>
@@ -16,10 +16,14 @@
 
   </div>
   <div class="header-routing-container">
-    <a class="header-routing-item shop" [routerLink]="['shop']">shop</a>
+    <div class="header-routing-item shop">
+        <a [routerLink]="['shop']">shop</a>
+    </div>
     <!-- <a class="header-routing-item" [routerLink]="['/']">read</a>
     <a class="header-routing-item" [routerLink]="['/']">archive</a> -->
-    <a class="header-routing-item about" [routerLink]="['about']">about</a>
+    <div class="header-routing-item about">
+        <a [routerLink]="['about']">about</a>
+    </div>
 
     <div class="header-routing-item search">
       <form onSubmit="return false;" (keyup.enter)="onSearch($event)">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -11,13 +11,17 @@ export class CartSummaryComponent implements OnInit {
   public shipping;
   public estimatedTax;
   public total;
+  @Input() set checkoutSummaryDetails(values) {
+    console.log('checkout details' , values);
+    if(values){
+      this.subtotal = values['subtotalPrice'];
+      this.estimatedTax = values['totalTax'];
+      this.total = values['totalPrice'];
+    }
+  };
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.subtotal = 800;
-    this.shipping = 40;
-    this.estimatedTax = 50;
-    this.total = 9000;
   }
   public onGoToCheckoutClicked(){
     this.customerService.goToCheckout();
