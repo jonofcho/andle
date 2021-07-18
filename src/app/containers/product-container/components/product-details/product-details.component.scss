@@ -1,13 +1,12 @@
 .product-details-info-container{
     background-color: #F3EEDC;  
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: repeat(6 , 90px);
     grid-column-gap: 1px;
     grid-row-gap: 1px;
     background-color: black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
+    height:100%;
     grid-template-areas:
     "title varianta"
     "title variantb"
@@ -47,6 +46,7 @@
 }
 .product-details-info.atc{
     grid-area: atc;
+    cursor: pointer;
     button{
         width: 100%;
         height: 100%;

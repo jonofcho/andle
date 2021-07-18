@@ -13,7 +13,7 @@ export class CollectionItemComponent implements OnInit {
   public collItemSubTitle: string;
   public collItemVariantColor: string;
   public collItemVariantScent: string;
-
+  public collItemVariantPrice: string;
   public collItemVariantId: string;
   @Input() set productData(values) {
     console.log(values);
@@ -25,6 +25,7 @@ export class CollectionItemComponent implements OnInit {
     this.collItemVariantScent = values.variantTitle.split(' / ')[1];
 
     this.collItemVariantId = values.variantId;
+    this.collItemVariantPrice = values.variantPrice
     // this.collItemVariants = values.node.variants.edges.map(v => {
     //   let obj = {};
     //   obj['handle'] = v.node.title.split(' ').join('-');

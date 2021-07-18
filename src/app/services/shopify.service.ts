@@ -293,6 +293,9 @@ export class ShopifyService {
                     image{
                       originalSrc
                     }
+                    priceV2{
+                      amount
+                    }
                   }
                 }
               }
@@ -341,6 +344,7 @@ export class ShopifyService {
         obj['productTitle'] = prod['title'];
         obj['variantId'] = variant['node']['id']
         obj['variantTitle'] = variant['node']['title']
+        obj['variantPrice'] = variant['node']['priceV2']['amount']
         console.log(variant['node']);
         
         obj['variantImg'] = variant['node']['image']['originalSrc']

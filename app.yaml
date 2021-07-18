@@ -2,11 +2,13 @@ runtime: python27
 api_version: 1
 threadsafe: true
 handlers:
-- url: /
-  static_files: dist/andle/index.html
-  upload: dist/andle/index.html
-- url: /
-  static_dir: dist/andle
+  - url: /(.*\.(gif|png|jpg|css|js)(|\.map))$
+    static_files: dist/andle/\1
+    upload: dist/andle/(.*)(|\.map)
+
+  - url: /(.*)
+    static_files: dist/andle/index.html
+    upload: dist/andle/index.html
 
 skip_files:
   - e2e/
