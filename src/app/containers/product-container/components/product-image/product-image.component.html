@@ -1,7 +1,17 @@
 <div class="image-collage-container">
-    <ng-container *ngFor="let img of images">
-        <div class="image-container">
-            <img src="{{img.node.originalSrc}}" alt="">
-        </div>
-    </ng-container>
+    <swiper 
+    [slidesPerView]="1" 
+    [spaceBetween]="0" 
+    (swiper)="onSwiper($event)" 
+    (slideChange)="onSlideChange()"
+    [pagination]="{ clickable: true }"
+    >
+        <ng-template swiperSlide *ngFor="let img of images">
+            <div class="image-container">
+                <img src="{{img.node.originalSrc}}" alt="">
+            </div>
+        </ng-template>
+
+    </swiper>
+
 </div>

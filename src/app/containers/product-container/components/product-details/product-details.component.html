@@ -16,11 +16,11 @@
         </div>
     </div>
     <div class="product-details-info price">
-        ${{currentVariantDetails.variantPrice}}
+        {{currentVariantDetails.variantPrice | currency    }}
     </div>
 
     <div class="product-details-info atc">
-        <button (click)="onAtcClick()">ADD TO CART</button>
+        <button type="button" (click)="onAtcClick()">ADD TO CART</button>
     </div>
     <div class="product-details-info buy">
         BUY NOW

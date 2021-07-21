@@ -99,7 +99,7 @@ export class ProductContainerComponent implements OnInit {
       obj['variantImg'] = rp['node']['image']['originalSrc'];
       obj['productHandle'] = handle.id  ;
       obj['variantTitle'] = rp['node']['title'];;
-
+      obj['variantId'] = rp['node']['id'];
 
       return obj
     })

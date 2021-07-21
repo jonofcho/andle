@@ -2,12 +2,23 @@
     padding: 2em 12%;
     background-color: #252525;
     color: #F4F3E9;
+    @media only screen and (min-width: 961px) {
+        .footer-orders{
+            grid-column: 2;
+        }
+
+    }
+
+    @media only screen and (max-width: 960px) {
+        padding: 2em 8px;
+
+    }
     .footer-content{
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 16px;
         border-bottom: 1px solid #F4F3E9;
-        margin-bottom: 8px;
+        margin-bottom: 8px; 
     }
 
     h3{

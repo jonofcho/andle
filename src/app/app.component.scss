@@ -80,11 +80,13 @@ img{
         }
     }
     .header-user-actions{
+        width: auto;
         a{
             display: none;
         }
         mat-icon{
             display: block;
+            width: 30px;
         }
     }
 

@@ -345,8 +345,6 @@ export class ShopifyService {
         obj['variantId'] = variant['node']['id']
         obj['variantTitle'] = variant['node']['title']
         obj['variantPrice'] = variant['node']['priceV2']['amount']
-        console.log(variant['node']);
-        
         obj['variantImg'] = variant['node']['image']['originalSrc']
         variantArr.push(obj)
       })
