@@ -6,7 +6,7 @@
     </div>
     <div class="cart-summary-items-container">
 
-        <app-cart-summary-item *ngFor="let checkoutItem of checkoutList" [checkoutItem]="checkoutItem"></app-cart-summary-item>
+        <app-cart-summary-item *ngFor="let checkoutItem of checkoutList" [checkoutItem]="checkoutItem" (quantityUpdateChange)="onQuantityUpdateChange($event)"></app-cart-summary-item>
 
     </div>
 </div>

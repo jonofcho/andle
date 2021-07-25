@@ -1,12 +1,14 @@
 <div class="missing-page-container">
+    <div class="missing-page-wrapper">
 
-    <div>
-        <p>Oops,</p>
-        <p>nothing here...</p>
+        <div class="status-message">
+            <p>Oops,</p>
+            <p>nothing here...</p>
+        </div>
+        <div>
+            <p id="status-code">404</p>  
+            
+        </div>
     </div>
-    <div>
-        <p>404</p>  
-
-    </div>
+    <a class="missing-page-back" (click)="returnToPrevPage()" >go back</a>
 </div>
-<a class="missing-page-back" (click)="returnToPrevPage()" >go back</a>

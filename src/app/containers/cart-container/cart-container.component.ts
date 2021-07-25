@@ -4,6 +4,7 @@ import { ShopifyService } from 'src/app/services/shopify.service';
 import { LoneSchemaDefinitionRule } from 'graphql';
 import { map } from 'rxjs/operators';
 import { Observable } from '@apollo/client/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-container',
@@ -13,11 +14,16 @@ import { Observable } from '@apollo/client/core';
 export class CartContainerComponent implements OnInit {
   public $checkoutList;
   public $checkoutSummaryDetails;
-  constructor(private shopifyService:ShopifyService,  private cookieService:CookieService) { }
+  public checkoutID;
+  constructor(private shopifyService:ShopifyService,  private cookieService:CookieService, private cartService:CartService) { }
 
   ngOnInit(): void {
-    let checkoutID = this.cookieService.get('checkoutID');
-    let $checkoutDetails = this.shopifyService.getCheckoutDetails(checkoutID)
+    this.checkoutID = this.cookieService.get('checkoutID');
+    let $checkoutDetails = this.shopifyService.getCheckoutDetails(this.checkoutID)
+    this.setCheckoutData($checkoutDetails)
+  }
+
+  public setCheckoutData($checkoutDetails){
     this.$checkoutList = $checkoutDetails.pipe(
       map(obs => {
         return obs['node']['lineItems']['edges']
@@ -35,6 +41,18 @@ export class CartContainerComponent implements OnInit {
         return obj
       })
     )
+  }
+
+  public updateQuantity(evt){
+    console.log('update was fired' , evt);
+    console.log('update checkoutList' , )
+    
+    this.cartService.updateCartItemQuantity(evt).subscribe( data => {
+      console.log(data);
+          },err => {
+      console.log('there was an error updating' , err);
+      
+    })
   }
 
   

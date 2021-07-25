@@ -3,11 +3,11 @@
         <img [routerLink]="['/product', collItemHandle,]" [queryParams]="{ id: collItemVariantId}" src="{{collItemImgSrc}}" alt="">
     </div>
     <div class="product-info product-name">
-        <p [routerLink]="['/product', collItemHandle,]">{{collItemTitle}}</p>
+        <p [routerLink]="['/product', collItemHandle,]">{{collItemTitle}} <span *ngIf="collItemVariantColor != ''">-</span> {{collItemVariantColor}}</p>
     </div>
     <div class="product-info product-variants">
         <p>
-            {{collItemVariantColor}}
+            Scent:
         </p>
         <p>
             {{collItemVariantScent}}
@@ -21,7 +21,7 @@
     </div>
     <div class="product-info product-atc">
         <p>{{collItemVariantPrice | currency}}</p>
-        <p>add to cart</p>
+        <p class="add-to-cart-button" (click)="atcEmit()">add to cart</p>
     </div>
 
 </div>

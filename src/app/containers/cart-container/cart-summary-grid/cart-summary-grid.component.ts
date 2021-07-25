@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-cart-summary-grid',
@@ -7,10 +7,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CartSummaryGridComponent implements OnInit {
   @Input() public checkoutList
+  @Output() quantityUpdateChange: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.checkoutList)
+    if(this.checkoutList){
+      console.log('this is checkoutList ' , this.checkoutList)
+    }
   }
+
+  public onQuantityUpdateChange(evt){;
+    
+    console.log('grid fired' , evt);
+    console.log('this is the list' , this.checkoutList);
+    
+    
+    this.quantityUpdateChange.emit(evt);
+  }  
+
 
 }

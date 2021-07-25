@@ -14,4 +14,16 @@
 }
 .cart-summary-item-detail{
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.checkout-remove-item{
+    cursor: pointer;
+}
+.mat-select-panel {
+    background: orange;
+}
+#checkout-quantity-selector{
+    width: 30px;
 }

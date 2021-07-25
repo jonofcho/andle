@@ -20,11 +20,11 @@ export class ProductDetailsComponent implements OnInit {
   @Input() set details(val) {
     if (val) {
       console.log('this is the val', val);
-      let variantData = val['currentVariantData'];
-      let varTitleSplit = variantData.title.split(' / ');
+      this.selectedVariant = val['currentVariantData'];
+      let varTitleSplit = this.selectedVariant.title.split(' / ');
       this.currentVariantDetails['variantColor'] = varTitleSplit[0];
       this.currentVariantDetails['variantScent'] = varTitleSplit[1];
-      this.currentVariantDetails['variantPrice'] = variantData['priceV2']['amount'];
+      this.currentVariantDetails['variantPrice'] = this.selectedVariant['priceV2']['amount'];
       this.productDetails = val['productByHandle'];
       // this.productVariants = this.productDetails['variants']['edges']
       // console.log('this is the product Details', this.productVariants);

@@ -3,20 +3,14 @@ import { ShopifyService } from './shopify.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Apollo, gql } from 'apollo-angular';
 import { Router } from '@angular/router';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  constructor(private shopifyService: ShopifyService, private cookieService: CookieService) { }
-
-  public addVariantToCart(productDetails) {
-    this.shopifyService.addVariantToCart(productDetails).subscribe(cartData => {
-      console.log('customer Service fired', cartData);
-    })
-  }
-
+  constructor(private shopifyService: ShopifyService, private cookieService: CookieService, private cartService:CartService) { }
 
 
   public goToCheckout() {

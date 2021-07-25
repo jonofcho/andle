@@ -3,9 +3,12 @@
         <div class="cart-items-container-header">
             <p>cart</p>
         </div>
-        <app-cart-summary-grid [checkoutList]="$checkoutList | async"></app-cart-summary-grid>
+        <app-cart-summary-grid *ngIf="$checkoutList | async; else emptyCart" (quantityUpdateChange)="updateQuantity($event)" [checkoutList]="$checkoutList | async"></app-cart-summary-grid>
+        <ng-template #emptyCart>
+            Cart is Empty
+        </ng-template>
     </div>
     <div class="cart-summary-container">
-        <app-cart-summary [checkoutSummaryDetails]="$checkoutSummaryDetails | async"></app-cart-summary>
+        <app-cart-summary [checkoutSummaryDetails]="$checkoutSummaryDetails | async" ></app-cart-summary>
     </div>
 </div>

@@ -89,9 +89,11 @@ export class ShopifyService {
       lineItems(first: 20) {
         edges {
           node {
+            id
             quantity
 						variant{
               title
+              id
               priceV2{
                 amount
               }
@@ -125,48 +127,12 @@ export class ShopifyService {
       })
     )
   }
+  
 
 
 
 
-  public addVariantToCart(variantDetails) {
-    let mutation: any;
-    let variantId = variantDetails['id']
-    let checkoutID = this.cookieService.get('checkoutID');
-    if (checkoutID) {
-      mutation = gql`
-        mutation ($variantId: ID!, $checkoutId: ID!) {
-          checkoutLineItemsAdd(
-            lineItems: [
-              { 
-                variantId: $variantId, quantity: 1 
-              }
-            ],
-            checkoutId: $checkoutId
-          ) {
-            checkout {
-              id
-              webUrl
-            }
-            checkoutUserErrors {
-              code
-              field
-              message
-            }
-          }
-        }
-      `
-    }
-
-    return this.apollo.mutate({
-      // @ts-ignore
-      mutation: mutation,
-      variables: {
-        variantId,
-        checkoutId: checkoutID
-      }
-    })
-  }
+  
 
   public getProductsByQuery(searchquery) {
     console.log('this is the searchQuery', searchquery);
@@ -212,7 +178,7 @@ export class ShopifyService {
     }).valueChanges.pipe(
       map(obs => {
         console.log(obs);
-        
+
         let product = obs['data']['products']['edges']
         return product
       }),
@@ -330,7 +296,7 @@ export class ShopifyService {
     )
   }
 
-  private getVariantArr(productobs){
+  private getVariantArr(productobs) {
     console.log('this isthe productobs', productobs);
     let variantArr = [];
     productobs.map(p => {

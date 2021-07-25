@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'collection-item',
@@ -15,13 +15,19 @@ export class CollectionItemComponent implements OnInit {
   public collItemVariantScent: string;
   public collItemVariantPrice: string;
   public collItemVariantId: string;
+  @Output() onAtc: EventEmitter<any> = new EventEmitter();
+
   @Input() set productData(values) {
     console.log(values);
     
     this.collItemTitle = values.productTitle;
     this.collItemImgSrc = values.variantImg;
     this.collItemHandle = values.productHandle;
-    this.collItemVariantColor = values.variantTitle.split(' / ')[0];
+    if(values.variantTitle.split(' / ')[0] != 'Multi'){
+      this.collItemVariantColor = values.variantTitle.split(' / ')[0];
+    }else{
+      this.collItemVariantColor = ''
+    }
     this.collItemVariantScent = values.variantTitle.split(' / ')[1];
 
     this.collItemVariantId = values.variantId;
@@ -42,6 +48,9 @@ export class CollectionItemComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+  public atcEmit(){
+    this.onAtc.emit(this.collItemVariantId)
   }
 
 }

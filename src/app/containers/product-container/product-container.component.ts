@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map, tap, concatMap } from 'rxjs/operators';
 import { CustomerService } from 'src/app/services/customer.service';
 import { filter } from 'rxjs/operators';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product-container.component.html',
@@ -18,7 +19,12 @@ export class ProductContainerComponent implements OnInit {
   public $productDetails;
   public $variantData;
   public $variantImages;
-  constructor(private route: ActivatedRoute, private customerService: CustomerService, private shopifyService: ShopifyService) {
+  constructor(
+    private route: ActivatedRoute, 
+    private customerService: CustomerService, 
+    private shopifyService: ShopifyService,
+    private cartService: CartService,
+    ) {
   }
 
   ngOnInit() {
@@ -74,23 +80,28 @@ export class ProductContainerComponent implements OnInit {
           let prodImageAltText:string = pi['node']['altText']
           return prodImageAltText === color || prodImageAltText === 'Collection';
         })
-        if(variantImages.length > 1){
-          return variantImages.reverse()
-        }
+        // if(variantImages.length > 1){
+        //   return variantImages.reverse()
+        // }
         return variantImages
       })
     )
   }
 
   public onAddToCart(productDetails) {
-    this.customerService.addVariantToCart(productDetails)
+    console.log('product details' , productDetails);
+    
+    this.cartService.addVariantToCart(productDetails).subscribe(data => {
+      
+    })
   }
 
   public getRelatedProducts(handle , parentProduct , varArr, currentVariantId) {
-    console.log('related PRoducts' , parentProduct,  varArr);
     this.relatedProducts = varArr.filter(v => {
       return v['node']['id'] != currentVariantId;
     })
+    console.log('related Products' , this.relatedProducts);
+    
     this.relatedProducts = this.relatedProducts.map(rp => {
       let obj = {}
       console.log('handle' , handle);
@@ -100,6 +111,8 @@ export class ProductContainerComponent implements OnInit {
       obj['productHandle'] = handle.id  ;
       obj['variantTitle'] = rp['node']['title'];;
       obj['variantId'] = rp['node']['id'];
+      obj['variantPrice'] = rp['node']['priceV2']['amount'];
+
 
       return obj
     })
