@@ -10,6 +10,82 @@ export class CartService {
 
   constructor(private apollo: Apollo, private cookieService: CookieService) { }
 
+  public deleteCartItem(deleteObj) {
+    let lineId = deleteObj.lineId;
+    console.log(lineId);
+    
+    let mutation: any;
+    // let variantId = variantDetails['id']
+    let checkoutID = this.cookieService.get('checkoutID');
+    if (checkoutID) {
+      mutation = gql`
+        mutation (
+          $checkoutId: ID!,
+          $id: ID!,
+        ) {
+          checkoutLineItemsRemove(
+          lineItemIds:[$id]
+          checkoutId: $checkoutId
+        ) {
+          checkout {
+            id,
+            subtotalPriceV2{
+              amount
+            }
+            totalPriceV2{
+              amount
+            }
+            shippingLine{
+              priceV2{
+                amount
+              }
+            }
+            totalTaxV2{
+              amount
+            }
+            lineItems(first: 20) {
+              edges {
+                node {
+                  id
+                  quantity
+                  variant{
+                    title
+                    id
+                    priceV2{
+                      amount
+                    }
+                    selectedOptions{
+                      name
+                      value
+                    }
+                    image(maxWidth: 300, maxHeight: 300){
+                      originalSrc
+                    }
+                  }
+                  title
+                  
+                }
+              }
+            }
+          },
+          checkoutUserErrors {
+              code
+              field
+              message
+            }
+        }
+      }
+      `
+    }
+    return this.apollo.mutate({
+      // @ts-ignore
+      mutation: mutation,
+      variables: {
+        checkoutId: checkoutID,
+        id: lineId
+      }
+    })
+  }
 
   public updateCartItemQuantity(updateObj) {
     let lineId = updateObj.lineId;
@@ -39,7 +115,45 @@ export class CartService {
           checkoutId: $checkoutId
         ) {
           checkout {
-            id
+            id,
+            subtotalPriceV2{
+              amount
+            }
+            totalPriceV2{
+              amount
+            }
+            shippingLine{
+              priceV2{
+                amount
+              }
+            }
+            totalTaxV2{
+              amount
+            }
+            lineItems(first: 20) {
+              edges {
+                node {
+                  id
+                  quantity
+                  variant{
+                    title
+                    id
+                    priceV2{
+                      amount
+                    }
+                    selectedOptions{
+                      name
+                      value
+                    }
+                    image(maxWidth: 300, maxHeight: 300){
+                      originalSrc
+                    }
+                  }
+                  title
+                  
+                }
+              }
+            }
           },
           checkoutUserErrors {
               code
@@ -60,7 +174,6 @@ export class CartService {
         id: lineId
       }
     })
-
   }
 
   public addVariantToCart(variantDetails) {
@@ -106,4 +219,68 @@ export class CartService {
       }
     })
   }
+
+  public getCheckoutDetails(checkoutID) {
+    const query: any = gql`
+{
+	node(id:"${checkoutID}"){
+    id
+    ... on Checkout{
+      id
+      subtotalPriceV2{
+        amount
+      }
+      totalPriceV2{
+        amount
+      }
+      shippingLine{
+				priceV2{
+          amount
+        }
+      }
+      totalTaxV2{
+        amount
+      }
+      lineItems(first: 20) {
+        edges {
+          node {
+            id
+            quantity
+						variant{
+              title
+              id
+              priceV2{
+                amount
+              }
+              selectedOptions{
+                name
+                value
+              }
+              image(maxWidth: 300, maxHeight: 300){
+                originalSrc
+              }
+            }
+            title
+            
+          }
+        }
+      }
+    }
+  }
 }
+  `
+    return this.apollo.watchQuery({
+      // @ts-ignore
+      query: query,
+    }).valueChanges.pipe(
+      tap(obs => {
+        console.log(obs);
+
+      }),
+      map(obs => {
+        return obs['data']['node']
+      })
+    )
+  }
+}
+

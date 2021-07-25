@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 export class CartSummaryItemComponent implements OnInit {
   @Input() public checkoutItem;
   @Output() quantityUpdateChange: EventEmitter<any> = new EventEmitter();
+  @Output() lineItemRemoveClick: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
   public quantity;
@@ -29,6 +30,14 @@ export class CartSummaryItemComponent implements OnInit {
       quantity: this.quantity
     }
     this.quantityUpdateChange.emit(updateObj)
+  }
+
+  public emitLineItemRemove(evt){
+    let deleteObj = {
+      lineId: this.checkoutItem.node.id,
+    }
+    this.lineItemRemoveClick.emit(deleteObj)
+    
   }
 
 }

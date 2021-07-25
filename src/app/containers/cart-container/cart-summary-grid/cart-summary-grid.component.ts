@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CartSummaryGridComponent implements OnInit {
   @Input() public checkoutList
   @Output() quantityUpdateChange: EventEmitter<any> = new EventEmitter();
+  @Output() lineItemRemove: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -25,6 +26,10 @@ export class CartSummaryGridComponent implements OnInit {
     
     this.quantityUpdateChange.emit(evt);
   }  
+
+  public onLineItemRemove(evt){
+    this.lineItemRemove.emit(evt)
+  }
 
 
 }

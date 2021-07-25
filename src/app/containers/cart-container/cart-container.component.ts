@@ -5,6 +5,7 @@ import { LoneSchemaDefinitionRule } from 'graphql';
 import { map } from 'rxjs/operators';
 import { Observable } from '@apollo/client/core';
 import { CartService } from 'src/app/services/cart.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-cart-container',
@@ -19,23 +20,23 @@ export class CartContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkoutID = this.cookieService.get('checkoutID');
-    let $checkoutDetails = this.shopifyService.getCheckoutDetails(this.checkoutID)
+    let $checkoutDetails = this.cartService.getCheckoutDetails(this.checkoutID)
     this.setCheckoutData($checkoutDetails)
   }
 
   public setCheckoutData($checkoutDetails){
     this.$checkoutList = $checkoutDetails.pipe(
       map(obs => {
-        return obs['node']['lineItems']['edges']
+        return obs['lineItems']['edges']
       })
     )
     this.$checkoutSummaryDetails = $checkoutDetails.pipe(
       map(obs => {
         let obj = {
-          subtotalPrice: obs['node']['subtotalPriceV2']['amount'],
-          totalPrice: obs['node']['totalPriceV2']['amount'],
-          // shippingPrice: obs['node']['shippingLine']['priceV2']['amount'],
-          totalTax: obs['node']['totalTaxV2']['amount']
+          subtotalPrice: obs['subtotalPriceV2']['amount'],
+          totalPrice: obs['totalPriceV2']['amount'],
+          // shippingPrice: obs['shippingLine']['priceV2']['amount'],
+          totalTax: obs['totalTaxV2']['amount']
 
         }
         return obj
@@ -44,14 +45,25 @@ export class CartContainerComponent implements OnInit {
   }
 
   public updateQuantity(evt){
-    console.log('update was fired' , evt);
-    console.log('update checkoutList' , )
+
     
     this.cartService.updateCartItemQuantity(evt).subscribe( data => {
       console.log(data);
+      this.setCheckoutData(of(data['data']['checkoutLineItemsUpdate']['checkout']))
           },err => {
       console.log('there was an error updating' , err);
       
+    })
+  }
+
+  public removeLineItem(evt){
+    this.cartService.deleteCartItem(evt).subscribe(data => {
+      console.log('return  dlete data' , data);
+      this.setCheckoutData(of(data['data']['checkoutLineItemsRemove']['checkout']))
+
+      
+    }, err => {
+      console.log(err)
     })
   }
 

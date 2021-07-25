@@ -65,68 +65,7 @@ export class ShopifyService {
     }
   }
 
-  public getCheckoutDetails(checkoutID) {
-    const query: any = gql`
-{
-	node(id:"${checkoutID}"){
-    id
-    ... on Checkout{
-      id
-      subtotalPriceV2{
-        amount
-      }
-      totalPriceV2{
-        amount
-      }
-      shippingLine{
-				priceV2{
-          amount
-        }
-      }
-      totalTaxV2{
-        amount
-      }
-      lineItems(first: 20) {
-        edges {
-          node {
-            id
-            quantity
-						variant{
-              title
-              id
-              priceV2{
-                amount
-              }
-              selectedOptions{
-                name
-                value
-              }
-              image(maxWidth: 300, maxHeight: 300){
-                originalSrc
-              }
-            }
-            title
-            
-          }
-        }
-      }
-    }
-  }
-}
-  `
-    return this.apollo.watchQuery({
-      // @ts-ignore
-      query: query,
-    }).valueChanges.pipe(
-      tap(obs => {
-        console.log(obs);
 
-      }),
-      map(obs => {
-        return obs['data']
-      })
-    )
-  }
   
 
 
