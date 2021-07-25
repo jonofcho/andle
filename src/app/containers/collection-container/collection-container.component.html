@@ -1,2 +1,5 @@
 <!-- FILTER HERE -->
-<collection-grid [collectionData] = "collectionByHandle | async"></collection-grid>
+<collection-grid 
+[collectionData] = "collectionByHandle | async"
+(onAtcClicked)="addToCart($event)"
+></collection-grid>

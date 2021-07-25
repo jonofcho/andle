@@ -5,7 +5,7 @@ import SwiperCore, {
   Scrollbar,
   A11y,
 } from 'swiper/core';
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination, Navigation]);
 @Component({
   selector: 'app-product-image',
   templateUrl: './product-image.component.html',

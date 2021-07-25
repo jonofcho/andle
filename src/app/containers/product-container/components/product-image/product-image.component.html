@@ -4,6 +4,7 @@
     [spaceBetween]="0" 
     (swiper)="onSwiper($event)" 
     (slideChange)="onSlideChange()"
+    [navigation]="true"
     [pagination]="{ clickable: true }"
     >
         <ng-template swiperSlide *ngFor="let img of images">

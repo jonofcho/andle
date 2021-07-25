@@ -1,6 +1,9 @@
 <div class="collection-product-grid">
 
-    <collection-item *ngFor="let productData of collectionData"
-    [productData]="productData"></collection-item>
+    <collection-item 
+    *ngFor="let productData of collectionData"
+    [productData]="productData"
+    (onAtc)="onAddToCart($event)"
+    ></collection-item>
 
 </div>

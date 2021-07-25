@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopifyService } from 'src/app/services/shopify.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'collection-container',
@@ -11,35 +12,45 @@ export class CollectionContainerComponent implements OnInit {
   public collectionByHandle;
   constructor(
     private shopifyService: ShopifyService,
-    private router: Router ,
-    private route:ActivatedRoute,
-    ) { }
-  
+    private cartService: CartService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
   ngOnInit() {
     let currentRoute = this.router.url;
     console.log(currentRoute);
-    
-    if(currentRoute === '/' || currentRoute === '/shop'){
+
+    if (currentRoute === '/' || currentRoute === '/shop') {
       currentRoute = 'frontpage'
     }
     this.route.queryParams
-    .subscribe(params => {
-      if(params.searchQuery != undefined){
-        let searchQuery = params.searchQuery;
-        console.log('search successful' , searchQuery); // { order: "popular" }
-        // params.searchQuery
-        // this.order = params.order;
-        // console.log(this.order); // popular
-        this.collectionByHandle = this.shopifyService.getProductsByQuery(searchQuery)
-      }else{
-        this.collectionByHandle = this.shopifyService.getCollectionByHandle(currentRoute)
+      .subscribe(params => {
+        if (params.searchQuery != undefined) {
+          let searchQuery = params.searchQuery;
+          console.log('search successful', searchQuery); // { order: "popular" }
+          // params.searchQuery
+          // this.order = params.order;
+          // console.log(this.order); // popular
+          this.collectionByHandle = this.shopifyService.getProductsByQuery(searchQuery)
+        } else {
+          this.collectionByHandle = this.shopifyService.getCollectionByHandle(currentRoute)
 
-      }
+        }
+      });
+  }
+  public addToCart(evt){
+    console.log('this is the atc item evt' , evt);
+    let atcObj = {
+      id: evt,
     }
-  );  
-
-
-  
+    this.cartService.addVariantToCart(atcObj).subscribe(data => {
+      console.log('atc success');
+      
+    },err => {
+      console.log('atc failed' , err);
+      
+    })
   }
 
 

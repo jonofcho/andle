@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,11 +8,14 @@ import { Observable } from 'rxjs';
 })
 export class CollectionGridComponent implements OnInit {
   @Input() collectionData:Observable<any>
-  
+  @Output() onAtcClicked: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
     
   }
-
+  onAddToCart(evt){
+    this.onAtcClicked.emit(evt)
+  }
 }
