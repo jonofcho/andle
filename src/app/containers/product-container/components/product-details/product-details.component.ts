@@ -33,6 +33,8 @@ export class ProductDetailsComponent implements OnInit {
     }
   };
   @Output() atcClick: EventEmitter<any> = new EventEmitter();
+  @Output() bnClick: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -44,5 +46,8 @@ export class ProductDetailsComponent implements OnInit {
   public setSelectedVariant(variant) {
     console.log('this is the selected variant', variant);
     this.selectedVariant = variant;
+  }
+  public onBuyNowClick(){ 
+    this.bnClick.emit(this.selectedVariant)
   }
 }

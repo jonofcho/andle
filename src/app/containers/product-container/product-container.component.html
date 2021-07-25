@@ -1,6 +1,11 @@
 <div class="product-details-container">
     <app-product-image [images]="$variantImages | async"></app-product-image>
-    <app-product-details *ngIf="$variantData | async" [details]="$variantData | async" (atcClick)="onAddToCart($event)">
+    <app-product-details 
+    *ngIf="$variantData | async" 
+    [details]="$variantData | async" 
+    (atcClick)="onAddToCart($event)"
+    (bnClick)="onBuyNow($event)"
+    >
     </app-product-details>
 </div>
 <div class="product-details-related-container" *ngIf="relatedProducts.length > 0">

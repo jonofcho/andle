@@ -87,6 +87,18 @@ export class ProductContainerComponent implements OnInit {
       })
     )
   }
+  public onBuyNow(evt){
+    console.log(evt);
+    let atcObject = {
+      id: evt.id
+    }
+    this.cartService.addVariantToCart(atcObject).subscribe(data => {
+      this.customerService.goToCheckout();
+    },err => {
+      console.log('atc error');
+      
+    })
+  }
 
   public onAddToCart(productDetails) {
     console.log('product details' , productDetails);
