@@ -51,6 +51,9 @@ export class CartService {
                   variant{
                     title
                     id
+                    product{
+                      handle
+                    }
                     priceV2{
                       amount
                     }
@@ -138,6 +141,9 @@ export class CartService {
                   variant{
                     title
                     id
+                    product{
+                      handle
+                    }
                     priceV2{
                       amount
                     }
@@ -249,6 +255,9 @@ export class CartService {
 						variant{
               title
               id
+              product{
+                handle
+              }
               priceV2{
                 amount
               }
