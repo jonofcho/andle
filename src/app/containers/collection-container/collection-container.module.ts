@@ -4,6 +4,7 @@ import { CollectionItemComponent } from './components/collection-item/collection
 import { CollectionContainerComponent } from './collection-container.component';
 import { CollectionGridComponent } from './components/collection-grid/collection-grid.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -16,6 +17,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     CommonModule,
     AppRoutingModule,
+    MatIconModule,
   ],
   exports: [
     CollectionItemComponent,

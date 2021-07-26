@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'collection-item',
@@ -15,10 +16,10 @@ export class CollectionItemComponent implements OnInit {
   public collItemVariantScent: string;
   public collItemVariantPrice: string;
   public collItemVariantId: string;
+  public pending:boolean;
   @Output() onAtc: EventEmitter<any> = new EventEmitter();
 
   @Input() set productData(values) {
-    console.log(values);
     
     this.collItemTitle = values.productTitle;
     this.collItemImgSrc = values.variantImg;
@@ -44,13 +45,16 @@ export class CollectionItemComponent implements OnInit {
 
   }
 
-  constructor() { }
+  constructor(private cartService:CartService) { }
 
   ngOnInit() {
-
   }
   public atcEmit(){
     this.onAtc.emit(this.collItemVariantId)
+    this.pending = true;
+    setTimeout(() => {
+      this.pending = false;
+    },3000)
   }
 
 }

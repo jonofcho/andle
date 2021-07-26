@@ -1,5 +1,5 @@
 <div class="cart-summary-item-container">
-    <div>
+    <div class="cart-summary-img-wrapper">
         <img [routerLink]="['/product', checkoutItem.node.variant.product.handle]" [queryParams]="{ id: checkoutItem.node.variant.id}" routerLinkActive="router-link-active"  src="{{checkoutItem.node.variant.image.originalSrc}}" alt="">
     </div>
     <div class="cart-summary-item-detail">

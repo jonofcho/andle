@@ -57,6 +57,13 @@ img{
 .header-routing-item{
     color: black;
     text-decoration: none;
+
+}
+.shop{
+    &:hover{
+        text-decoration: underline;
+    }
+}.about{
     &:hover{
         text-decoration: underline;
     }
@@ -138,6 +145,7 @@ img{
     p{
         margin-right: 8px;
         cursor: default;
+        text-decoration: none;
     }
     input{
         border: none;
@@ -176,4 +184,5 @@ mat-sidenav{
 }
 .header-image{
     cursor: pointer;
+    outline: none;
 }

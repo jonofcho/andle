@@ -9,7 +9,6 @@ import { CookieService } from 'ngx-cookie-service';
 export class CartService {
 
   constructor(private apollo: Apollo, private cookieService: CookieService) { }
-
   public deleteCartItem(deleteObj) {
     let lineId = deleteObj.lineId;
     console.log(lineId);
