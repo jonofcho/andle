@@ -23,3 +23,21 @@
 p{
     margin: 0 0 0;
 }
+
+@media only screen and (max-width: 960px) {
+    .cart-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .cart-items-container-header{
+        align-items: center;
+        flex: 1;
+        justify-content: flex-start;
+        padding-left: 16px;
+    }
+    .cart-summary-container{
+        flex: 1;
+        min-height: auto;
+        border-left: none;
+    }
+}

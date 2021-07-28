@@ -10,7 +10,7 @@ import { CartService } from './cart.service';
 })
 export class CustomerService {
 
-  constructor(private cookieService: CookieService, private cartService:CartService) { }
+  constructor( private cookieService: CookieService, private cartService:CartService) { }
 
 
   public goToCheckout() {

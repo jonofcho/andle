@@ -17,8 +17,8 @@ p{
     align-items: center;
     padding-left: 16px !important;
 }
-.cart-summary-header.quantity{
-}
-.cart-summary-header.price{
-
+@media only screen and (max-width: 960px) {
+    .cart-summary-header-container{
+        display: none;
+    }
 }

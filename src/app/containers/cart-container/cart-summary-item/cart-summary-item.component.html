@@ -1,14 +1,32 @@
 <div class="cart-summary-item-container">
     <div class="cart-summary-img-wrapper">
-        <img [routerLink]="['/product', checkoutItem.node.variant.product.handle]" [queryParams]="{ id: checkoutItem.node.variant.id}" routerLinkActive="router-link-active"  src="{{checkoutItem.node.variant.image.originalSrc}}" alt="">
+        <img [routerLink]="['/product', checkoutItem.node.variant.product.handle]"
+            [queryParams]="{ id: checkoutItem.node.variant.id}" routerLinkActive="router-link-active"
+            src="{{checkoutItem.node.variant.image.originalSrc}}" alt="">
     </div>
     <div class="cart-summary-item-detail">
         <div>
             <p>{{checkoutItem.node.title}}</p>
             <p>code# 000000000</p>
-            
-            <p *ngFor="let option of checkoutItem.node.variant.selectedOptions"><strong>{{option.name}}:</strong> {{option.value}}</p>
+
+            <p *ngFor="let option of checkoutItem.node.variant.selectedOptions"><strong>{{option.name}}:</strong>
+                {{option.value}}</p>
+
+            <p class="hide-on-web">{{checkoutItem.node.variant.priceV2.amount | currency}}</p>
             <br>
+            <mat-select id="checkout-quantity-selector" class="hide-on-web" [(value)]="quantity"
+                (selectionChange)="emitQuantityUpdate()">
+                <mat-option value="0">0</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+                <mat-option value="6">6</mat-option>
+                <mat-option value="7">7</mat-option>
+                <mat-option value="8">8</mat-option>
+                <mat-option value="9">9</mat-option>
+            </mat-select>
         </div>
 
         <div class="flex-align-between">
@@ -16,7 +34,7 @@
             <!-- <p>save for later</p> -->
         </div>
     </div>
-    <div class="flex-align-center">
+    <div class="flex-align-center hide-on-mobile">
         <mat-select id="checkout-quantity-selector" [(value)]="quantity" (selectionChange)="emitQuantityUpdate()">
             <mat-option value="0">0</mat-option>
             <mat-option value="1">1</mat-option>
@@ -30,7 +48,7 @@
             <mat-option value="9">9</mat-option>
         </mat-select>
     </div>
-    <div class="flex-align-center">
+    <div class="flex-align-center hide-on-mobile">
         <p>{{checkoutItem.node.variant.priceV2.amount | currency}}</p>
     </div>
 </div>
