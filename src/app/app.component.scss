@@ -94,9 +94,14 @@ img{
         mat-icon{
             display: block;
             width: 30px;
+            cursor: pointer;
         }
     }
-
+    .mobile-header-cart-icon-container{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
     .header-container{
         grid-template-columns: 40px 1fr 40px;
         margin-top:16px;

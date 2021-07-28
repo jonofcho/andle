@@ -23,7 +23,8 @@
     </div>
 
     <div class="product-details-info atc">
-        <button type="button" (click)="onAtcClick()">ADD TO CART</button>
+        <button *ngIf="!pending" type="button" (click)="onAtcClick()">ADD TO CART</button>
+        <button *ngIf="pending" type="button" (click)="onAtcClick()">ADDED TO CART</button>
     </div>
     <div class="product-details-info buy">
         <button type="button" (click)="onBuyNowClick()">BUY NOW</button>

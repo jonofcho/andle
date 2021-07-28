@@ -54,7 +54,7 @@ export class CollectionItemComponent implements OnInit {
     this.pending = true;
     setTimeout(() => {
       this.pending = false;
-    },3000)
+    },1000)
   }
 
 }

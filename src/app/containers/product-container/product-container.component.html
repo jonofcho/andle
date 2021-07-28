@@ -14,6 +14,6 @@
         <!-- <collection-item></collection-item>
     <collection-item></collection-item>
     <collection-item></collection-item> -->
-        <collection-item *ngFor="let productData of relatedProducts" [productData]="productData"></collection-item>
+        <collection-item *ngFor="let productData of relatedProducts | slice:0:3" [productData]="productData"></collection-item>
     </div>
 </div>

@@ -15,9 +15,6 @@ export class CustomerService {
 
   public goToCheckout() {
     let checkoutUrl = this.cookieService.get('checkoutUrl');
-    console.log('this is the checkoutUrl' , checkoutUrl);
-    
     window.location.href = checkoutUrl;
-
   }
 }

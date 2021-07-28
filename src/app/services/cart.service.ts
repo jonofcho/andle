@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  myBool$: Observable<boolean>;
 
-  constructor(private apollo: Apollo, private cookieService: CookieService) { }
+  cartChange: Subject<string> = new Subject<string>();
+  constructor(private apollo: Apollo, private cookieService: CookieService) {
+  }
   public deleteCartItem(deleteObj) {
     let lineId = deleteObj.lineId;
     console.log(lineId);
@@ -202,8 +206,17 @@ export class CartService {
             checkoutId: $checkoutId
           ) {
             checkout {
-              id
-              webUrl
+              id,
+              webUrl,
+              lineItems(first:50){
+                edges{
+                  node{
+                    id
+                    quantity
+                  }
+                }
+              }
+              
             }
             checkoutUserErrors {
               code

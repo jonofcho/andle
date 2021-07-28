@@ -11,7 +11,9 @@
     <div class="header-user-actions">
       <!-- <a href="/login">login</a> -->
       <a href="/cart">cart</a>
-      <mat-icon [routerLink]="['/cart']" routerLinkActive="router-link-active" >shopping_bag</mat-icon>
+      <div [routerLink]="['/cart']" routerLinkActive="router-link-active" class="mobile-header-cart-icon-container">
+        <mat-icon>shopping_bag</mat-icon> {{cartQuantity}}
+      </div>
     </div>
 
   </div>

@@ -22,7 +22,7 @@
     <div class="product-info product-atc">
         <p>{{collItemVariantPrice | currency}}</p>
         <p *ngIf="!pending" class="add-to-cart-button" (click)="atcEmit()">add to cart</p>
-        <mat-icon *ngIf="pending">pending</mat-icon>
+        <p *ngIf="pending" class="add-to-cart-button">added to cart</p>
     </div>
 
 </div>

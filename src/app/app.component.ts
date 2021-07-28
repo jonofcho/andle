@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
+import { CartService } from './services/cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +16,28 @@ export class AppComponent {
   title = 'andle';
   public searchControl: FormControl = new FormControl('');
   public isSearchActive:boolean = false;
+  public cartQuantity:string = '0';
   @ViewChild('snav') sidenav:MatSidenav;
   constructor(
     public dialog: MatDialog,
-    public router: Router
-  ) { }
+    public router: Router,
+    public cartService:CartService,
+    public cookieService:CookieService
+  ) { 
+    this.cartService.getCheckoutDetails(this.cookieService.get('checkoutID')).subscribe(data => {
+      this.cartQuantity = data['lineItems']['edges'].reduce((a,b)=>{
+        return a + parseInt(b['node']['quantity'])
+      }, 0)
+      
+    })
+    this.cartService.cartChange.subscribe(data => {
+      console.log('CART HAS CHANGED' , data);
+      this.cartQuantity = data;
+    })
+  }
 
   onSearch(evt) {
-    console.log('this is the search', this.searchControl);
+
     if(this.searchControl.value.length > 0){
       this.router.navigate(['collections'], { queryParams: { searchQuery: this.searchControl.value } })
       this.sidenav.close()
@@ -30,4 +46,5 @@ export class AppComponent {
   setSearchActive(){
     this.isSearchActive = true;
   }
+
 }

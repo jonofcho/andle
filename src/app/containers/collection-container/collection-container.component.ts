@@ -45,8 +45,6 @@ export class CollectionContainerComponent implements OnInit {
       id: evt,
     }
     this.cartService.addVariantToCart(atcObj).subscribe(data => {
-      console.log('atc success');
-      
     },err => {
       console.log('atc failed' , err);
       

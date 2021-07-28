@@ -16,6 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   public productVariants;
   public selectedVariant;
   public currentVariantDetails: CurrentVariantDetails = <CurrentVariantDetails>{};
+  public pending:boolean = false;
 
   @Input() set details(val) {
     if (val) {
@@ -42,6 +43,10 @@ export class ProductDetailsComponent implements OnInit {
   }
   public onAtcClick() {
     this.atcClick.emit(this.selectedVariant)
+    this.pending = true;
+    setTimeout(() => {
+      this.pending = false;
+    },1000)
   }
   public setSelectedVariant(variant) {
     console.log('this is the selected variant', variant);

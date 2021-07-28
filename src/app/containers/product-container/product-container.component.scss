@@ -44,7 +44,7 @@ app-product-image::-webkit-scrollbar {
     border-top: 1px solid black;
     @media only screen and (min-width: 961px) {
         collection-item{
-            flex: 2;
+            flex: 1;
             .collection-product-grid-item{
                 border: none !important;
             }
