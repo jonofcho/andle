@@ -1,4 +1,4 @@
-<div class="image-collage-container">
+<div class="image-collage-container" *ngIf="images">
     <swiper [slidesPerView]="1" [spaceBetween]="0" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()"
         [navigation]="true" [pagination]="{ clickable: true }" *ngIf="images.length > 1">
         <ng-template swiperSlide *ngFor="let img of images">

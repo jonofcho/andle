@@ -26,3 +26,9 @@
     border-bottom: 1px solid black;
     cursor: pointer;
 }
+@media only screen and (max-width: 960px) {
+    .ptc-button{
+        border-bottom: none;
+
+    }
+}

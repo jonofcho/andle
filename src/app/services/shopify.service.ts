@@ -94,6 +94,10 @@ export class ShopifyService {
                     image{
                       originalSrc
                     }
+                    priceV2{
+                      amount
+                      currencyCode
+                    }
                   }
                 }
               }

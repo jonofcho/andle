@@ -17,7 +17,6 @@ export class ProductImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('These are the images' , this.images);
     
   }
   onSwiper(swiper) {
