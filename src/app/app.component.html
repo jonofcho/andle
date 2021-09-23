@@ -2,7 +2,7 @@
   <div class="header-container" style="">
     <div class="whitespace"></div>
     <div class="mobile-nav-actions-container">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+      <button mat-icon-button class="header-menu-icon" aria-label="Example icon-button with menu icon"
         (click)="snav.toggle()">
         <mat-icon style="font-size:32px">menu</mat-icon>
       </button>
@@ -10,28 +10,35 @@
     <img class="header-image" [routerLink]="['/']" src="/assets/logo.png" alt="">
     <div class="header-user-actions">
       <!-- <a href="/login">login</a> -->
-      <a href="/cart">cart</a>
-      <div [routerLink]="['/cart']" routerLinkActive="router-link-active" class="mobile-header-cart-icon-container">
-        <mat-icon>shopping_bag</mat-icon> {{cartQuantity}}
+      <a href="/cart" class="cart-link">cart</a>
+      <div [routerLink]="['/cart']"  class="mobile-header-cart-icon-container">
+        <mat-icon class="material-icons-outlined">
+          shopping_bag
+          </mat-icon>
+        <p class="mleft-8">{{cartQuantity}}</p>
       </div>
     </div>
 
   </div>
   <div class="header-routing-container">
     <div class="header-routing-item shop">
-        <a [routerLink]="['shop']">shop</a>
+        <a [routerLink]="['shop']" routerLinkActive="router-link-active">
+          <p>shop</p>
+        </a>
     </div>
     <!-- <a class="header-routing-item" [routerLink]="['/']">read</a>
     <a class="header-routing-item" [routerLink]="['/']">archive</a> -->
     <div class="header-routing-item about">
-        <a [routerLink]="['about']">about</a>
+        <a [routerLink]="['about']" routerLinkActive="router-link-active">
+          <p>about</p>
+        </a>
     </div>
 
     <div class="header-routing-item search">
       <form onSubmit="return false;" (keyup.enter)="onSearch($event)">
         <div class="header-search-item">
-          <p>Search</p>
-          <input [formControl]="searchControl" type="text">
+          <p>search</p>
+          <input class="header-search-input" [formControl]="searchControl" type="text">
           <mat-icon autofocus type="submit" (click)="onSearch($event)" aria-hidden="false"
             aria-label="Example home icon">search
           </mat-icon>
@@ -55,13 +62,13 @@
               </a>
 
             </div>
-            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['shop']">shop</a>
+            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['shop']" (click)="sidenav.close()">shop</a>
             <!-- <a class="mobile-side-nav-item" mat-list-item [routerLink]="p">read</a>
     <a class="mobile-side-nav-item" mat-list-item [routerLink]="/">archive</a> -->
-            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['about']">about</a>
+            <a class="mobile-side-nav-item" mat-list-item [routerLink]="['about']" (click)="sidenav.close()">about</a>
           </div>
           <div>
-            <a class="mobile-side-nav-item" mat-list-item>customer service</a>
+            <a class="mobile-side-nav-item" mat-list-item (click)="sidenav.close()">customer service</a>
 
           </div>
         </div>

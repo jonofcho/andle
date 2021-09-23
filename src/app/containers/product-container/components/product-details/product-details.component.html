@@ -23,10 +23,10 @@
     </div>
 
     <div class="product-details-info atc">
-        <button *ngIf="!pending" type="button" (click)="onAtcClick()">ADD TO CART</button>
-        <button *ngIf="pending" type="button" (click)="onAtcClick()">ADDED TO CART</button>
+        <p *ngIf="!pending" (click)="onAtcClick()">ADD TO CART</p>
+        <p *ngIf="pending" (click)="onAtcClick()">ADDED TO CART</p>
     </div>
     <div class="product-details-info buy">
-        <button type="button" (click)="onBuyNowClick()">BUY NOW</button>
+        <p (click)="onBuyNowClick()">BUY NOW</p>
     </div>
 </div>

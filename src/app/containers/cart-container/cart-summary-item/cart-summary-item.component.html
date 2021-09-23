@@ -7,7 +7,6 @@
     <div class="cart-summary-item-detail">
         <div>
             <p>{{checkoutItem.node.title}}</p>
-            <p>code# 000000000</p>
 
             <p *ngFor="let option of checkoutItem.node.variant.selectedOptions"><strong>{{option.name}}:</strong>
                 {{option.value}}</p>

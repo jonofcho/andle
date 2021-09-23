@@ -186,7 +186,7 @@ export class ShopifyService {
     const basicQuery: any = gql`
     {
       collectionByHandle(handle: "${collectionHandle}") {
-        products(first: 250) {
+        products(first: 7) {
           edges {
             node {
               id

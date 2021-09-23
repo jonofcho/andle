@@ -24,6 +24,9 @@
     background-color: #F3EEDC;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 @media only screen and (max-width: 960px) {

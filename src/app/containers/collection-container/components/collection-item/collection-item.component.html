@@ -3,12 +3,9 @@
         <img [routerLink]="['/product', collItemHandle,]" [queryParams]="{ id: collItemVariantId}" src="{{collItemImgSrc}}" alt="">
     </div>
     <div class="product-info product-name">
-        <p [routerLink]="['/product', collItemHandle,]">{{collItemTitle}} <span *ngIf="collItemVariantColor != ''">-</span> {{collItemVariantColor}}</p>
+        <p class="font-ivy" [routerLink]="['/product', collItemHandle,]" [queryParams]="{ id: collItemVariantId}">{{collItemTitle}} <span *ngIf="collItemVariantColor != ''">-</span> {{collItemVariantColor}}</p>
     </div>
     <div class="product-info product-variants">
-        <p>
-            Scent:
-        </p>
         <p>
             {{collItemVariantScent}}
         </p>
@@ -21,7 +18,7 @@
     </div>
     <div class="product-info product-atc">
         <p>{{collItemVariantPrice | currency}}</p>
-        <p *ngIf="!pending" class="add-to-cart-button" (click)="atcEmit()">add to cart</p>
+        <p *ngIf="!pending" class="add-to-cart-button hide-on-mobile" (click)="atcEmit()">ADD TO CART</p>
         <p *ngIf="pending" class="add-to-cart-button">added to cart</p>
     </div>
 
